@@ -1,0 +1,10 @@
+{
+    "DEPENDENCY_SYNTAX_ERROR": {
+        "cause": "Mal formato en requirements.txt",
+        "solution": "Ejecutar 'pip install -r requirements.txt --dry-run' para validar"
+    },
+    "GIT_CONFIG_ERROR": {
+        "cause": "URLs SSH mal configuradas",
+        "solution": "Reemplazar 'git@github.com' con 'https://github.com/'"
+    }
+}
