@@ -2,7 +2,7 @@
 # scripts/setup_runner.sh
 
 RUNNER_NAME="mechmind-ai-runner-$(hostname)"
-TOKEN="BPUT7UC27GU7YUQSSCAHBATH63QYI"  # Reemplazar con token real
+TOKEN="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"  # Reemplazar con token real
 
 echo "🔧 Configurando GitHub Actions Runner para MechanicalMind AI..."
 
