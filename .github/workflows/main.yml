@@ -1,18 +1,32 @@
-- nombre: Descargar un artefacto de compilación
-  usos: acciones/descargar-artefacto@v4.2.1
-  con:
-    # Nombre del artefacto a descargar. Si no se especifica, se descargan todos los artefactos de la ejecución.
-    nombre: # opcional
-    Ruta de destino. Admite expansión básica de tilde. El valor predeterminado es $GITHUB_WORKSPACE.
-    ruta: # opcional
-    # Un patrón glob que coincide con los artefactos que deben descargarse. Se ignora si se especifica el nombre.
-    patrón: # opcional
-    # Cuando se combinan varios artefactos, esto cambia el comportamiento de los directorios de destino. Si es verdadero, los artefactos descargados estarán en el mismo directorio especificado por la ruta. Si es falso, los artefactos descargados se extraerán en directorios individuales dentro de la ruta especificada.
-    merge-multiple: # opcional, el valor predeterminado es falso
-    # El token de GitHub utilizado para la autenticación con la API de GitHub. Esto es necesario al descargar artefactos de un repositorio diferente o de una ejecución de flujo de trabajo diferente. Si no se especifica, la acción intentará descargar artefactos del repositorio y la ejecución de flujo de trabajo actuales.
-    token de github: # opcional
-    # El propietario y el nombre del repositorio unidos por "/". Si se especifica github-token, este es el repositorio desde el que se descargarán los artefactos.
-    repositorio: # opcional, el valor predeterminado es ${{ github.repository }}
-    # El ID de la ejecución del flujo de trabajo desde donde se cargó el artefacto de descarga deseado. Si se especifica github-token, esta es la ejecución desde donde se descargarán los artefactos.
-    run-id: # opcional, el valor predeterminado es ${{ github.run_id }}
-          
+-- name:
+   uses: actions/download-artifact@v4.2.1
+       with:
+        pattern: 'report-*.json'
+         path: ./custom_reports/
+          merge-multiple: true
+           github-token: ${{ secrets.CI_CD_TOKEN }}
+            repository: mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-
+              run-id: ${{ github.event.workflow_run.id }}
+on:
+  workflow_run:
+    workflows: ["Dependency Analysis"]
+    types:
+      - completed
+
+jobs:
+  download-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Specific Artifact
+      uses: actions/download-artifact@v4.2.1
+      with:
+        name: dependency-report
+        path: ${{ runner.temp }}/artifacts
+        github-token: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }}
+
+    - name: Process Artifacts
+      run: |
+        echo "Processing downloaded artifacts..."
+        python ai_core/artifact_processor.py \
+          --input "${{ runner.temp }}/artifacts" \
+          --output ./reports/
