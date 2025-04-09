@@ -1,4 +1,4 @@
-            - nombre: Descargar un artefacto de compilación
+- nombre: Descargar un artefacto de compilación
   usos: acciones/descargar-artefacto@v4.2.1
   con:
     # Nombre del artefacto a descargar. Si no se especifica, se descargan todos los artefactos de la ejecución.
