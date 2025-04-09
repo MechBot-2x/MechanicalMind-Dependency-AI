@@ -1,0 +1,7 @@
+## **📌 Próximos Pasos (Roadmap)**  
+
+| Feature                     | Prioridad | Responsable   | ETA       |
+|----------------------------|----------|--------------|-----------|
+| Auto-PR en fallos de CI/CD  | 🔴 High  | DevOps Team  | 2025-05-01|
+| Soporte para Node.js        | 🟡 Medium| JS Team      | 2025-06-15|
+| Predictor de conflictos     | 🟢 Low   | AI Team      | 2025-07-30|
