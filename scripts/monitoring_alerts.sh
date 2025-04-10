@@ -1,4 +1,3 @@
-# scripts/monitoring_alerts.sh
 aws cloudwatch put-metric-alarm \
   --alarm-name "HighRunnerCPU" \
   --metric-name "CPUUtilization" \
