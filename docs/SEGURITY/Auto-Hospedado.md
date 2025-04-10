@@ -105,7 +105,29 @@ jobs:
    - Alertas en CloudWatch para actividad anómala
    - Logs de ejecución cifrados en S3
 ```
+## 📊 Dashboard de Monitoreo (Opcional)
 
+**Recomendación: Implementar Grafana con:**
+
+**Métricas Clave:**
+
+* Tiempo de ejecución promedio
+* Uso de CPU/Memoria
+* Tasa de fallos
+
+**Alertas:**
+
+Se recomienda configurar alertas en Grafana basadas en las métricas clave. Para la configuración inicial de alertas en AWS CloudWatch, puedes utilizar el siguiente script:
+
+```bash
+# scripts/monitoring_alerts.sh
+aws cloudwatch put-metric-alarm \
+  --alarm-name "HighRunnerCPU" \
+  --metric-name "CPUUtilization" \
+  --namespace "GitHubRunners" \
+  --threshold 80 \
+  --comparison-operator GreaterThanThreshold
+  
 ### **4. Automatización de Mantenimiento**
 **Archivo:** `.github/workflows/runner-cleanup.yml`
 
