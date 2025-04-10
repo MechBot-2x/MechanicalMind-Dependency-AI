@@ -30,3 +30,4 @@ jobs:
         python ai_core/artifact_processor.py \
           --input "${{ runner.temp }}/artifacts" \
           --output ./reports/
+[![.github/workflows/main.yml](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/main.yml/badge.svg)](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/main.yml)
