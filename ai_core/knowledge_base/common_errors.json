@@ -1,4 +1,16 @@
 {
+  "DEPENDENCY_SYNTAX_ERROR": {
+    "description": "Invalid syntax in dependency specification file",
+    "patterns": [
+      "Invalid requirement:",
+      "Parse error in requirements file"
+    ],
+    "solutions": [
+      "Run 'pip install -r requirements.txt --dry-run' to validate syntax",
+      "Check for special characters or malformed version specifiers"
+    ],
+    "severity": "high"
+  },
   "VERSION_NOT_FOUND": {
     "description": "Requested package version is not available",
     "patterns": [
@@ -7,8 +19,7 @@
     ],
     "solutions": [
       "Check available versions with 'pip index versions <package>'",
-      "Remove version constraint or specify different version",
-      "Verify package name is correct"
+      "Remove version constraint or specify different version"
     ],
     "severity": "high"
   },
@@ -24,18 +35,5 @@
       "Use HTTPS URLs instead of SSH"
     ],
     "severity": "medium"
-  },
-  "DEPENDENCY_CONFLICT": {
-    "description": "Incompatible dependency versions",
-    "patterns": [
-      "cannot install .* because these package versions have conflicting dependencies",
-      "found existing installation"
-    ],
-    "solutions": [
-      "Create fresh virtual environment",
-      "Use 'pip check' to identify conflicts",
-      "Try 'pip install --upgrade --force-reinstall'"
-    ],
-    "severity": "critical"
   }
 }
