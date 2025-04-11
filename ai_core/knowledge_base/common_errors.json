@@ -1,10 +1,41 @@
 {
-    "DEPENDENCY_SYNTAX_ERROR": {
-        "cause": "Mal formato en requirements.txt",
-        "solution": "Ejecutar 'pip install -r requirements.txt --dry-run' para validar"
-    },
-    "GIT_CONFIG_ERROR": {
-        "cause": "URLs SSH mal configuradas",
-        "solution": "Reemplazar 'git@github.com' con 'https://github.com/'"
-    }
+  "VERSION_NOT_FOUND": {
+    "description": "Requested package version is not available",
+    "patterns": [
+      "could not find a version that satisfies",
+      "no matching distribution found"
+    ],
+    "solutions": [
+      "Check available versions with 'pip index versions <package>'",
+      "Remove version constraint or specify different version",
+      "Verify package name is correct"
+    ],
+    "severity": "high"
+  },
+  "GIT_SSH_AUTH_ERROR": {
+    "description": "Authentication failure with Git SSH URLs",
+    "patterns": [
+      "git@github.com: permission denied",
+      "could not read from remote repository"
+    ],
+    "solutions": [
+      "Run: git config --global url.https://github.com/.insteadOf git@github.com:",
+      "Set up SSH keys properly",
+      "Use HTTPS URLs instead of SSH"
+    ],
+    "severity": "medium"
+  },
+  "DEPENDENCY_CONFLICT": {
+    "description": "Incompatible dependency versions",
+    "patterns": [
+      "cannot install .* because these package versions have conflicting dependencies",
+      "found existing installation"
+    ],
+    "solutions": [
+      "Create fresh virtual environment",
+      "Use 'pip check' to identify conflicts",
+      "Try 'pip install --upgrade --force-reinstall'"
+    ],
+    "severity": "critical"
+  }
 }
