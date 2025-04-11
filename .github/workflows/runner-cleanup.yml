@@ -2,14 +2,14 @@ name: Runner Maintenance
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # Diario a las 3 AM
+    - cron: '0 3 * * *'  # Daily at 3 AM
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
     - name: Cleanup old runners
-      uses: actions/runner-cleanup@v1
+      uses: actions/runner-cleanup@v2
       with:
         token: ${{ secrets.GH_RUNNER_CLEANUP_TOKEN }}
-        max-age: 24h  # Eliminar runners inactivos >24h
+        max-age: 24h  # Remove inactive runners >24h
