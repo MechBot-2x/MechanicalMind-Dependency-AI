@@ -21,4 +21,4 @@ jobs:
         
     - name: Run tests
       run: |
-        python manage.py test
+       python path/to/manage.py test
