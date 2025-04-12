@@ -1,5 +1,4 @@
-name: MechanicalMind Dependency AI
-[![MechanicalMind Dependency AI](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/dependency_ai.yml/badge.svg)](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/dependency_ai.yml)
+name: MechanicalMind Dependency AI.
 on:
   push:
     branches: [ main ]
