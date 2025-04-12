@@ -14,16 +14,18 @@
       - completed
 
 jobs:
-  download-artifacts:
+  upload_artifact:
     runs-on: ubuntu-latest
     steps:
-      - name: Download Specific Artifact
-        uses: actions/download-artifact@v4.2.1
+      - uses: actions/checkout@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
           name: dependency-report
-          path: ${{ runner.temp }}/artifacts
-          github-token: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }}
-
+          path: ./reports/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }} 
       - name: Process Artifacts
         run: |
           echo "Processing downloaded artifacts..."
