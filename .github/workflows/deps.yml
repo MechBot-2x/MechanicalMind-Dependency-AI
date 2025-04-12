@@ -1,0 +1,5 @@
+- name: Dependency Scan
+  uses: mechmind/ai-dependency-action@v3
+  with:
+    strict-mode: true
+    auto-fix: true
