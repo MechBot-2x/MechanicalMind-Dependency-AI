@@ -12,10 +12,10 @@
     workflows: ["Dependency Analysis"]
     types:
       - completed
-
-jobs:
-  upload_artifact:
-    runs-on: ubuntu-latest
+      
+   jobs:
+     build:
+       runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       
