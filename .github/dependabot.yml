@@ -1,0 +1,6 @@
+version: 2
+updates:
+  - package-ecosystem: ""  # Ecosistema de paquetes a monitorear
+    directory: "/"         # Directorio donde se encuentran los manifiestos
+    schedule:
+      interval: "weekly"   # Frecuencia de chequeo de actualizaciones
