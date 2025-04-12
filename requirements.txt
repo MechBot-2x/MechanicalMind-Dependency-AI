@@ -1,4 +1,23 @@
 # MechanicalMind-Dependency-AI v3.0.1 - Core Requirements
+# Last updated: 2024-06-20
+
+# HTTP Requests
+requests>=2.25.1  # Modern HTTP client with SSL verification
+
+# Configuration
+pyyaml>=6.0  # YAML parser for configuration files
+
+# Database ORM
+sqlalchemy>=1.4.0  # SQL toolkit and ORM with async support
+
+# CLI Framework
+click>=8.0.0  # Command Line Interface creation toolkit
+
+# Web Framework
+django>=4.0,<5.0  # Full-stack web framework (LTS version)
+
+# Local Package (install in editable mode)
+-e .  # Installs your myproject package from current directory# MechanicalMind-Dependency-AI v3.0.1 - Core Requirements
 # Last updated: 2024-04-12
 
 # HTTP Requests
