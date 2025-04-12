@@ -37,17 +37,3 @@ django>=4.0,<5.0  # Full-stack web framework (LTS version)
 
 # Local Package (install in editable mode)
 -e .  # Installs your myproject package from current directory
-
-# Development Dependencies (optional)
-[dev]
-pytest>=7.0.0  # Testing framework
-black>=22.0  # Code formatter
-flake8>=4.0.0  # Linter
-
-[test]
-pytest-django>=4.5.0  # Django test utilities
-factory-boy>=3.0.0  # Test fixtures
-
-[docs]
-sphinx>=5.0.0  # Documentation generator
-furo>=2022.4.0  # Documentation theme
