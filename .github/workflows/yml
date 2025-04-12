@@ -1,0 +1,15 @@
+name: Ejecución en runners Ubuntu
+on: [push]
+
+jobs:
+  check-version:
+    runs-on: 
+      group: ubuntu-runners
+      labels: ubuntu-20.04-16core
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: node -v
+      - run: npm -v
