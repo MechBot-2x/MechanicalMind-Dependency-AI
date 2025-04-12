@@ -10,6 +10,9 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      
       - name: Dependency Scan
         uses: mechmind/ai-dependency-action@v3
         with:
