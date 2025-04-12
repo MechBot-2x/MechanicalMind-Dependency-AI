@@ -1,5 +1,17 @@
-- name: Dependency Scan
-  uses: mechmind/ai-dependency-action@v3
-  with:
-    strict-mode: true
-    auto-fix: true
+name: Dependency Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dependency Scan
+        uses: mechmind/ai-dependency-action@v3
+        with:
+          strict-mode: true
+          auto-fix: true
