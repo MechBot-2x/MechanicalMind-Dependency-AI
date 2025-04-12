@@ -1,5 +1,34 @@
-requests>=2.25.1
-pyyaml>=6.0
-sqlalchemy>=1.4.0
-click>=8.0.0
-django>=4.0,<5.0
+# MechanicalMind-Dependency-AI v3.0.1 - Core Requirements
+# Last updated: 2024-04-12
+
+# HTTP Requests
+requests>=2.25.1  # Modern HTTP client with SSL verification
+
+# Configuration
+pyyaml>=6.0  # YAML parser for configuration files
+
+# Database ORM
+sqlalchemy>=1.4.0  # SQL toolkit and ORM with async support
+
+# CLI Framework
+click>=8.0.0  # Command Line Interface creation toolkit
+
+# Web Framework
+django>=4.0,<5.0  # Full-stack web framework (LTS version)
+
+# Local Package (install in editable mode)
+-e .  # Installs your myproject package from current directory
+
+# Development Dependencies (optional)
+[dev]
+pytest>=7.0.0  # Testing framework
+black>=22.0  # Code formatter
+flake8>=4.0.0  # Linter
+
+[test]
+pytest-django>=4.5.0  # Django test utilities
+factory-boy>=3.0.0  # Test fixtures
+
+[docs]
+sphinx>=5.0.0  # Documentation generator
+furo>=2022.4.0  # Documentation theme
