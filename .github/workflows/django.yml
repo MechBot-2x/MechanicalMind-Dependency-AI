@@ -1,3 +1,4 @@
+
 name: Django CI
 
 on: [push, pull_request]
@@ -21,5 +22,5 @@ jobs:
         
     - name: Run tests
       run: |
-       python path/to/manage.py test
+       python /manage.py test
        [![Django CI](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/django.yml/badge.svg)](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/django.yml)
