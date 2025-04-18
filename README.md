@@ -1,6 +1,6 @@
 # MechanicalMind Dependency AI v3.0
 
-![MechMind Logo](https://via.placeholder.com/150x50?text=MechMind+AI)  
+![MechMind Logo](https://via.placeholder.com/150x50?text=MechMind+AI)
 **Advanced Dependency Management with AI-Powered Resolution**
 
 ## 🚀 Key Features

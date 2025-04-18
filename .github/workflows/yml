@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   check-version:
-    runs-on: 
+    runs-on:
       group: ubuntu-runners
       labels: ubuntu-20.04-16core
     steps:

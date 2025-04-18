@@ -1,39 +1,10 @@
 {
-  "DEPENDENCY_SYNTAX_ERROR": {
-    "description": "Invalid syntax in dependency specification file",
-    "patterns": [
-      "Invalid requirement:",
-      "Parse error in requirements file"
-    ],
-    "solutions": [
-      "Run 'pip install -r requirements.txt --dry-run' to validate syntax",
-      "Check for special characters or malformed version specifiers"
-    ],
-    "severity": "high"
-  },
-  "VERSION_NOT_FOUND": {
-    "description": "Requested package version is not available",
-    "patterns": [
-      "could not find a version that satisfies",
-      "no matching distribution found"
-    ],
-    "solutions": [
-      "Check available versions with 'pip index versions <package>'",
-      "Remove version constraint or specify different version"
-    ],
-    "severity": "high"
-  },
-  "GIT_SSH_AUTH_ERROR": {
-    "description": "Authentication failure with Git SSH URLs",
-    "patterns": [
-      "git@github.com: permission denied",
-      "could not read from remote repository"
-    ],
-    "solutions": [
-      "Run: git config --global url.https://github.com/.insteadOf git@github.com:",
-      "Set up SSH keys properly",
-      "Use HTTPS URLs instead of SSH"
-    ],
-    "severity": "medium"
-  }
+    "common_errors": {
+        "DEFAULT_ERROR": {
+            "description": "Error por defecto - reemplazar con datos reales",
+            "patterns": ["error"],
+            "solutions": ["Consultar documentación"],
+            "severity": "medium"
+        }
+    }
 }

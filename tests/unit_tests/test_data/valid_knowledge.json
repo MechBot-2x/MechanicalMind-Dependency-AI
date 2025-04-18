@@ -1,0 +1,14 @@
+{
+  "common_errors": {
+    "TEST_ERROR": {
+      "description": "Test error",
+      "patterns": [
+        "test pattern"
+      ],
+      "solutions": [
+        "test solution"
+      ],
+      "severity": "low"
+    }
+  }
+}

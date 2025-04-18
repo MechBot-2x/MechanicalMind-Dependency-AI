@@ -1,7 +1,12 @@
--- name:
-   uses: actions/download-artifact@v4.2.1
-     with:
-    pattern: 'report-*.json'
+ name: CI
+  on: [push]
+  jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+      uses: actions/download-artifact@v4.2.1
+      with:
+     pattern: 'report-*.json'
         path: ./custom_reports/
           merge-multiple: true
            github-token: ${{ secrets.CI_CD_TOKEN }}
@@ -12,20 +17,20 @@
     workflows: ["Dependency Analysis"]
     types:
       - completed
-      
+
    jobs:
      build:
        runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: dependency-report
           path: ./reports/
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }}
       - name: Process Artifacts
         run: |
           echo "Processing downloaded artifacts..."
