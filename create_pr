@@ -1,6 +1,5 @@
-import datetime from datetime import datetime  # Add this import
+from datetime import datetime  # Import only the datetime class
 
 def create_pr(branch, title):
-    # Your existing code
-    timestamp = datetime.now()  # Example usage of datetime
+ timestamp = datetime.now()  # Directly use now() from the datetime class
     print(f"Creating PR at {timestamp}")
