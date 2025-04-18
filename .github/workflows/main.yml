@@ -1,40 +1,24 @@
- name: CI
-  on: [push]
-  jobs:
-    test:
-      runs-on: ubuntu-latest
-      steps:
-      uses: actions/download-artifact@v4.2.1
-      with:
-     pattern: 'report-*.json'
-        path: ./custom_reports/
-          merge-multiple: true
-           github-token: ${{ secrets.CI_CD_TOKEN }}
-            repository: mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-
-              run-id: ${{ github.event.workflow_run.id }}
-              on:
-  workflow_run:
-    workflows: ["Dependency Analysis"]
-    types:
-      - completed
+name: CI Pipeline
 
-   jobs:
-     build:
-       runs-on: ubuntu-latest
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          name: dependency-report
-          path: ./reports/
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }}
-      - name: Process Artifacts
+          python-version: '3.10'
+      - name: Install dependencies
         run: |
-          echo "Processing downloaded artifacts..."
-          python ai_core/artifact_processor.py \
-            --input "${{ runner.temp }}/artifacts" \
-            --output ./reports/
-[![.github/workflows/main.yml](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/main.yml/badge.svg)](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/main.yml)
+          python -m pip install --upgrade pip
+          pip install -e .
+      - name: Run tests
+        run: |
+          python -m pytest
