@@ -1,45 +1,36 @@
-name: Dependency Analysis Workflow
+# .github/workflows/main.yml
+
+name: Procesamiento de Reportes de Dependencias
 
 on:
   workflow_run:
-    workflows:
-      - "Dependency Analysis"
+    workflows: ["Análisis de Dependencias"]
     types:
       - completed
 
 jobs:
-  build:
+  procesar-reportes:
     runs-on: ubuntu-latest
-
+    
     steps:
-      # Checkout the repository code
-      - name: Checkout Code
+      - name: Descargar código
         uses: actions/checkout@v4
-
-      # Download artifact with a specific pattern
-      - name: Download Artifact
-        uses: actions/download-artifact@v4.2.1
-        with:
-          pattern: 'report-*.json'
-          path: ./custom_reports/
-          merge-multiple: true
-          github-token: ${{ secrets.CI_CD_TOKEN }}
-          repository: mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-
-          run-id: ${{ github.event.workflow_run.id }}
-
-      # Upload generated dependency report
-      - name: Upload Dependency Report
-        uses: actions/upload-artifact@v3
+        
+      - name: Descargar artefactos
+        uses: actions/download-artifact@v4
         with:
           name: dependency-report
-          path: ./reports/
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }}
-
-      # Process downloaded artifacts
-      - name: Process Artifacts
+          path: ./reportes/
+          
+      - name: Procesar artefactos
         run: |
-          echo "Processing downloaded artifacts..."
-          python ai_core/artifact_processor.py \
-            --input "${{ runner.temp }}/artifacts" \
-            --output ./reports/
+          echo "Procesando artefactos descargados..."
+          python nucleo_ai/procesador_artefactos.py \
+            --entrada "./reportes" \
+            --salida ./reportes_finales/
+            
+      - name: Subir reportes procesados
+        uses: actions/upload-artifact@v3
+        with:
+          name: reportes-finales
+          path: ./reportes_finales/
