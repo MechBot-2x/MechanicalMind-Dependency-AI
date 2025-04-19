@@ -1,42 +1,17 @@
 """
-MechanicalMind Utilities Package v2.0
-Utility functions for the Dependency AI system
+Módulo utils para MechanicalMind Dependency AI
 """
 
-from .file_helpers import (
-    handle_file_errors,
-    safe_read_file,
-    atomic_write_file,
-    read_json_file,
-    write_json_file,
-    read_yaml_file,
-    write_yaml_file,
-    file_checksum,
-    find_files_by_pattern,
-)
-from .logging_config import setup_logging
-from .network_helpers import fetch_url
+__version__ = "3.0.1"
+__author__ = "MechMind Team <dev@mechmind.example>"
 
-__all__ = [
-    "handle_file_errors",
-    "safe_read_file",
-    "atomic_write_file",
-    "read_json_file",
-    "write_json_file",
-    "read_yaml_file",
-    "write_yaml_file",
-    "file_checksum",
-    "find_files_by_pattern",
-    "setup_logging",
-    "fetch_url",
-]
+# Importaciones diferidas para evitar circular imports
+def configure_logging():
+    from .logging_config import configure_logging as _configure
+    return _configure()
 
-from .network_helpers import (
-    check_internet_connection,
-    download_file,
-    get_pypi_package_info,
-    is_port_available,
-)
-from .logging_config import configure_logging, get_module_logger
+def make_http_request(*args, **kwargs):
+    from .network_helpers import make_http_request as _make_request
+    return _make_request(*args, **kwargs)
 
-__all__ = [name for name in globals() if not name.startswith("_")]
+__all__ = ['__version__', '__author__', 'configure_logging', 'make_http_request']
