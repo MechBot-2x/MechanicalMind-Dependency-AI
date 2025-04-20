@@ -1,5 +1,5 @@
 # MechanicalMind-Dependency-AI v3.0.1 - Core Requirements
-# Last updated: 2024-06-20
+# Last updated: 2025-04-19
 
 # HTTP Requests
 requests>=2.25.1  # Modern HTTP client with SSL verification
