@@ -67,12 +67,22 @@ mechmind fix --strategy=conservative
 
 ### CI Integration
 ```yaml
-# .github/workflows/deps.yml
+# Step: Run dependency scan using MechMind AI Dependency Action
+# - Performs a strict dependency analysis
+# - Automatically fixes common issues
 - name: Dependency Scan
-  uses: mechmind/ai-dependency-action@v3
+  id: dependency-scan
+  uses: mechmind/ai-dependency-action@v3.0.1
   with:
     strict-mode: true
     auto-fix: true
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# Optional: Report issues if any were found
+- name: Report Issues
+  if: steps.dependency-scan.outputs.issues_found == 'true'
+  run: echo "Dependency issues found! Review the scan results."
 ```
 
 ## 🔍 How It Works
