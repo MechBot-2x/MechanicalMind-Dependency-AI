@@ -1,4 +1,3 @@
-graph TD
     A[CLI Interface] --> B[Core Engine]
     B --> C[Analysis Module]
     B --> D[Resolution Module]
@@ -9,4 +8,3 @@ graph TD
     E --> I[Knowledge Base]
     F --> I
     G --> I
-  
