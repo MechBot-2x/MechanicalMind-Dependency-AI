@@ -1,6 +1,39 @@
-version: 2
-updates:
-  - package-ecosystem: ""  # Ecosistema de paquetes a monitorear
-    directory: "/"         # Directorio donde se encuentran los manifiestos
-    schedule:
-      interval: "weekly"   # Frecuencia de chequeo de actualizaciones
+#.github/dependabot.yml           
+Modified versión: 2
+actualizaciones:
+  - ecosistema: "npm"    # Para dependencias de Node.js
+    directorio: "/"      # Raíz del proyecto
+    programación:
+      intervalo: "diario"  # Chequeos diarios
+    revisores:            # Equipo encargado
+      - "@mechbot-frontend-team"
+    etiquetas:            # Tags automáticos
+      - "dependencies"
+      - "javascript"
+
+  - ecosistema: "pip"    # Para Python
+    directorio: "/src"
+    programación:
+      intervalo: "semanal" # Cada lunes
+    ignorar:              # Exclusiones
+      - nombre: "numpy"   # Usamos nuestra versión customizada
+        versiones: ["1.24.x"]
+
+  - ecosistema: "docker" # Imágenes de contenedores
+    directorio: "/dockerfiles"
+    programación:
+      intervalo: "mensual"
+    umbral-version: "minor" # Solo actualizaciones menores/parches
+
+  - ecosistema: "github-actions" # Workflows
+    directorio: "/.github/workflows"
+    programación:
+      intervalo: "semanal"
+
+# Configuración de seguridad (vulnerabilidades)
+alertas-seguridad:
+  habilitado: true
+  pull-requests:
+    auto-merge: true     # Merge automático para parches críticos
+    reviewers:
+      - "@mechbot-security-team"
