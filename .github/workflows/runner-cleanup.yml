@@ -1,7 +1,6 @@
 ##[debug]Starting: Set up job
 Current runner version: '2.323.0'
 Operating System
-Runner Image
 Runner Image Provisioner
 GITHUB_TOKEN Permissions
 Secret source: Actions
