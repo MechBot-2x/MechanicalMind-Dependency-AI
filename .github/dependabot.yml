@@ -1,5 +1,5 @@
-GNU nano 8.4               .github/dependabot.yml               Modified
-versión: 2
+#.github/dependabot.yml           
+Modified versión: 2
 actualizaciones:
   - ecosistema: "npm"    # Para dependencias de Node.js
     directorio: "/"      # Raíz del proyecto
