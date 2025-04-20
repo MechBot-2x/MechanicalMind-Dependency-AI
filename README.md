@@ -77,7 +77,7 @@ mechmind fix --strategy=conservative
     strict-mode: true
     auto-fix: true
   env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }}
 
 # Optional: Report issues if any were found
 - name: Report Issues
