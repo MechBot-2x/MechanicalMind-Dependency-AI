@@ -9,6 +9,6 @@ setup(
     ],
     description='Description of your project',
     author='Your mechmind-dwv,
-    author_email='ai.mechmind@gmail.com',
+     author_email='ai.mechmind@gmail.com',
     url='https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v3.0-',
 )
