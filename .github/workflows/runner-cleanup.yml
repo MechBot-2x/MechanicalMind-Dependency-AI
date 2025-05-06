@@ -1,23 +1,47 @@
-##[debug]Starting: Set up job
-Current runner version: '2.323.0'
-Operating System
-Runner Image Provisioner
-GITHUB_TOKEN Permissions
-Secret source: Actions
-##[debug]Primary repository: mechmind-dwv/-MechanicalMind-Dependency-AI-v3.0-
-Prepare workflow directory
-##[debug]Creating pipeline directory: '/home/runner/work/-MechanicalMind-Dependency-AI-v3.0-'
-##[debug]Creating workspace directory: '/home/runner/work/-MechanicalMind-Dependency-AI-v3.0-/-MechanicalMind-Dependency-AI-v3.0-'
-##[debug]Update context data
-##[debug]Evaluating job-level environment variables
-##[debug]Evaluating job container
-##[debug]Evaluating job service containers
-##[debug]Evaluating job defaults
-Prepare all required actions
-Getting action download info
-Error: Missing download info for actions/runner-cleanup@v2
-##[debug]System.Exception: Missing download info for actions/runner-cleanup@v2
-##[debug]   at GitHub.Runner.Worker.ActionManager.PrepareActionsRecursiveAsync(IExecutionContext executionContext, PrepareActionsState state, IEnumerable`1 actions, Int32 depth, Guid parentStepId)
-##[debug]   at GitHub.Runner.Worker.ActionManager.PrepareActionsAsync(IExecutionContext executionContext, IEnumerable`1 steps, Guid rootStepId)
-##[debug]   at GitHub.Runner.Worker.JobExtension.InitializeJob(IExecutionContext jobContext, AgentJobRequestMessage message)
-##[debug]Finishing: Set up job
+name: Runner Maintenance and Health Check
+on:
+  schedule:
+    - cron: '0 3 * * *'  # Ejecución diaria a las 3 AM UTC
+  workflow_dispatch:     # Permite ejecución manual
+
+jobs:
+  cleanup:
+    name: Cleanup Offline Runners
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Clean up offline runners
+        uses: actions/cleanup-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          remove-token: ${{ secrets.GITHUB_TOKEN }}
+          exclude-running: true  # No eliminar runners en uso
+          min-age-days: 1        # Solo runners inactivos >1 día
+          dry-run: false         # Cambiar a true para pruebas
+
+  health-check:
+    name: Runner Health Check
+    needs: cleanup  # Depende del job de limpieza
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check disk space
+        run: df -h
+        
+      - name: Check memory usage
+        run: free -m
+        
+      - name: Check CPU cores
+        run: nproc
+        
+      - name: Check runner status
+        run: |
+          echo "::group::Runner Status"
+          echo "Runner version: ${{ runner.version }}"
+          echo "OS: ${{ runner.os }}"
+          echo "::endgroup::"
+          
+      - name: Check GitHub Actions service status
+        run: |
+          STATUS=$(curl -s https://www.githubstatus.com/api/v2/status.json | jq -r '.status.description')
+          echo "GitHub Actions Status: $STATUS"
