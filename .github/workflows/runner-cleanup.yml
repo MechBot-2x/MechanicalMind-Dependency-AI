@@ -1,4 +1,4 @@
-name: Runner Maintenance and Health Check
+name: Mantenimiento y Monitoreo de Runners
 on:
   schedule:
     - cron: '0 3 * * *'  # Ejecución diaria a las 3 AM UTC
@@ -6,42 +6,55 @@ on:
 
 jobs:
   cleanup:
-    name: Cleanup Offline Runners
+    name: Limpieza de Runners Inactivos
     runs-on: ubuntu-latest
     permissions:
       actions: write
     steps:
-      - name: Clean up offline runners
-        uses: actions/cleanup-action@v2
+      - name: Limpiar runners offline
+        uses: actions/cleanup-action@v3  # Versión actualizada
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           remove-token: ${{ secrets.GITHUB_TOKEN }}
-          exclude-running: true  # No eliminar runners en uso
-          min-age-days: 1        # Solo runners inactivos >1 día
-          dry-run: false         # Cambiar a true para pruebas
+          exclude-running: true    # No eliminar runners en uso
+          min-age-days: 1          # Solo runners inactivos >1 día
+          dry-run: false           # Cambiar a true para modo prueba
 
   health-check:
-    name: Runner Health Check
-    needs: cleanup  # Depende del job de limpieza
+    name: Verificación de Salud
+    needs: cleanup
     runs-on: ubuntu-latest
     steps:
-      - name: Check disk space
-        run: df -h
-        
-      - name: Check memory usage
-        run: free -m
-        
-      - name: Check CPU cores
-        run: nproc
-        
-      - name: Check runner status
+      - name: Verificar recursos del sistema
         run: |
-          echo "::group::Runner Status"
-          echo "Runner version: ${{ runner.version }}"
-          echo "OS: ${{ runner.os }}"
+          echo "::group::Estado del Sistema"
+          echo "Fecha: $(date)"
+          echo "Versión del Runner: ${{ runner.version }}"
+          echo "Sistema Operativo: ${{ runner.os }}"
           echo "::endgroup::"
           
-      - name: Check GitHub Actions service status
+          echo "::group::Uso de Disco"
+          df -h
+          echo "::endgroup::"
+          
+          echo "::group::Memoria"
+          free -m
+          echo "::endgroup::"
+          
+          echo "::group::CPU"
+          nproc
+          lscpu | grep "Model name"
+          echo "::endgroup::"
+          
+      - name: Verificar estado de GitHub Actions
         run: |
-          STATUS=$(curl -s https://www.githubstatus.com/api/v2/status.json | jq -r '.status.description')
-          echo "GitHub Actions Status: $STATUS"
+          echo "::group::Estado del Servicio GitHub"
+          curl -s https://www.githubstatus.com/api/v2/summary.json | \
+            jq -r '.components[] | select(.name == "Actions") | "Status: \(.status)\nUpdated: \(.updated_at)"'
+          echo "::endgroup::"
+          
+      - name: Verificar conexión con GitHub
+        run: |
+          echo "::group::Prueba de Conexión"
+          curl -I https://api.github.com | grep HTTP
+          echo "::endgroup::"
