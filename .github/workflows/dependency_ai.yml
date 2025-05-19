@@ -1,84 +1,169 @@
-name: Enhanced Dependency Scan with Security Checks
+# ====================================================
+# 🛡️ MECHANICAL MIND DEPENDENCY SCANNER v3.0 🛡️
+# ARCHITECTURE: AI-Powered Dependency Security Suite
+# ENGINE: mechmind/ai-dependency-action@v3.0.1
+# TACTICAL OBJECTIVE: Eliminate Vulnerabilities
+# ====================================================
+
+name: "DEPENDENCY_SENTINEL_ACTIVATION"
 
 on:
+  # 🚨 TRIGGER PROTOCOLS
   push:
-    branches: [ main ]
+    branches: [ "main" ]  # Primary defense perimeter
+    tags: [ "v*" ]       # Release version monitoring
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]  # Pre-merge security checkpoint
+  schedule:
+    - cron: "0 3 * * 1"  # Weekly deep scan (Monday 3AM UTC)
 
+# 🔐 STRATEGIC PERMISSIONS
 permissions:
-  contents: write  # For pushing changes/fixes
-  pull-requests: write  # For creating/updating PRs
-  security-events: write  # For reporting security issues
-  actions: read  # For workflow operations
-  checks: write  # For creating check runs
+  contents: write         # Code modification clearance
+  security-events: write  # Threat intelligence reporting
+  pull-requests: write    # Countermeasure deployment
+  actions: read           # Operational awareness
+  checks: write           # Security validation stamps
 
 jobs:
+  # =========================================
+  # 🕵️ ELITE DEPENDENCY RECONNAISSANCE UNIT
+  # =========================================
   dependency-scan:
-    name: Dependency Scan & Security Analysis
-    runs-on: [self-hosted, linux]  # Modified to use self-hosted runner
+    name: "TACTICAL_SCAN_OPERATION"
+    runs-on: [self-hosted, linux, x64]  # MechMind Battle Station
     
+    # ⚙️ OPERATIONAL PARAMETERS
+    timeout-minutes: 30  # Mission duration limit
+    env:
+      DEFCON: 1          # Maximum alert status
+      SCAN_MODE: "aggressive"
+
     steps:
-      - name: Checkout Repository
+      # --------------------------
+      # 🌀 PHASE 1: TERRITORY SECURE
+      # --------------------------
+      - name: "⬇️ INFILTRATE CODEBASE"
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for full git context
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0       # Full intelligence gathering
+          token: ${{ secrets.MECHBOT_ACCESS_TOKEN }}
+          persist-credentials: false  # Operational security
 
-      - name: Setup Node.js
+      # --------------------------
+      # ⚡ PHASE 2: ARMAMENT SETUP
+      # --------------------------
+      - name: "🔧 CONFIGURE NODE.JS BATTLE STATION"
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: '20'   # Special forces edition
+          cache: 'npm'        # Accelerated armament
+          cache-dependency-path: 'package-lock.json'
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: "💣 LOAD DEPENDENCY MUNITIONS"
+        run: npm ci --prefer-offline  # Offline survival mode
+        env:
+          NODE_ENV: "production"
 
-      - name: Run Dependency Scan
-        id: dependency-scan
+      # --------------------------
+      # 🔥 PHASE 3: SCAN ENGAGEMENT
+      # --------------------------
+      - name: "🚀 LAUNCH AI SCAN MISSILE"
+        id: mechmind-scan
         uses: mechmind/ai-dependency-action@v3.0.1
         with:
-          strict-mode: true
-          auto-fix: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          scan-modules: true  # Enable module scanning
-          output-format: 'sarif'  # For security reporting
+          version: '3.0.1'            # Weapon system version
+          strategy: 'full-assault'    # No mercy mode
+          github-token: ${{ secrets.MECHBOT_ACCESS_TOKEN }}
+          scan-modules: true          # Deep module infiltration
+          output-format: 'sarif'      # Military-grade reporting
+          fail-on: 'critical'         # Zero tolerance
+        env:
+          AI_MODE: "predator"
 
-      - name: Upload SARIF Report
+      # --------------------------
+      # 📡 PHASE 4: INTELLIGENCE REPORTING
+      # --------------------------
+      - name: "📡 UPLOAD SARIF SURVEILLANCE DATA"
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
+          category: "dependency-threats"
+          checkout-path: ${{ github.workspace }}
 
-      - name: Commit Auto-Fixes
-        if: steps.dependency-scan.outputs.fixes_made == 'true'
+      # --------------------------
+      # ⚔️ PHASE 5: AUTOMATED COUNTERMEASURES
+      # --------------------------
+      - name: "🤖 DEPLOY AUTOMATED FIXES"
+        if: steps.mechmind-scan.outputs.fixes_made == 'true'
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
+          git config --global user.name 'mechmind-dwv'
+          git config --global user.email 'ia.mechmind@gmail.com'
           git add .
-          git commit -m "Automated dependency fixes from scan"
-          git push
+          git commit -m "⚡[AUTO-FIX] Neutralized vulnerabilities"
+          git push origin HEAD:main --force
+        env:
+          GIT_COMMITTER_NAME: "MechBot-9000"
+          GIT_COMMITTER_EMAIL: "mechbot@mechmind.io"
 
-      - name: Create Pull Request for Major Updates
-        if: steps.dependency-scan.outputs.major_updates_available == 'true'
+      - name: "🚨 INITIATE MAJOR UPDATE SEQUENCE"
+        if: steps.mechmind-scan.outputs.major_updates_available == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: 'Dependency Updates: Major Version Changes'
-          body: 'Automated PR for major dependency updates'
-          branch: 'dependency-updates-$(date +%s)'
+          token: ${{ secrets.MECHBOT_ACCESS_TOKEN }}
+          title: "🚀 STRATEGIC DEPENDENCY UPGRADE"
+          body: "Critical version updates detected - Immediate action required"
+          branch: "dependency-strike-$(date +%s)"
+          labels: "security,priority-1"
+          assignees: "@mechbot-security-team"
+          milestone: 1
 
-      - name: Report Scan Status
+      # --------------------------
+      # 📊 PHASE 6: MISSION DEBRIEF
+      # --------------------------
+      - name: "📌 TACTICAL STATUS REPORT"
         run: |
-          if [ "${{ steps.dependency-scan.outputs.issues_found }}" == "true" ]; then
-            echo "::warning::Dependency issues found! Review scan results."
-            echo "Consider creating an issue for tracking."
-          else
-            echo "Dependency scan completed successfully with no critical issues."
-          fi
+          echo "=== SCAN MISSION COMPLETE ==="
+          echo "OPERATION STATUS: ${{ job.status }}"
+          echo "THREATS DETECTED: ${{ steps.mechmind-scan.outputs.issues_found }}"
+          echo "AUTO-FIXES DEPLOYED: ${{ steps.mechmind-scan.outputs.fixes_made }}"
+          echo "CRITICAL UPDATES: ${{ steps.mechmind-scan.outputs.major_updates_available }}"
+          echo "BATTLE STATION: ${{ runner.name }}"
+          echo "OS ENVIRONMENT: ${{ runner.os }}"
+          echo "============================="
 
-      - name: Notify Job Completion
-        if: always()
-        run: |
-          echo "Job completed with status: ${{ job.status }}"
-          echo "Runner used: ${{ runner.name }}"
-          echo "Runner OS: ${{ runner.os }}"
+      - name: "🔔 ALERT SECURITY COUNCIL"
+        if: failure()
+        uses: actions/slack@v1
+        with:
+          payload: |
+            {
+              "text": "🚨 DEPENDENCY SCAN FAILURE DETECTED",
+              "attachments": [{
+                "color": "#ff0000",
+                "fields": [{
+                  "title": "Failed Operation",
+                  "value": "${{ github.workflow }}"
+                }]
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SECURITY_ALERT_WEBHOOK }}
+
+# ====================================================
+# 🏁 MISSION PARAMETERS SUMMARY
+# ====================================================
+# STRATEGIC OBJECTIVES:
+# - 24/7 Dependency Threat Detection
+# - Automated Vulnerability Neutralization
+# - Military-Grade Security Reporting
+# - Zero-Tolerance for Critical Vulnerabilities
+#
+# TACTICAL CAPABILITIES:
+# - AI-Powered Deep Scanning
+# - Self-Healing Codebase
+# - Multi-Phase Verification
+# - Real-Time Security Alerts
+#
+# 🔐 SECURITY CLEARANCE REQUIRED: LEVEL 5
+# ====================================================
