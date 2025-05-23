@@ -1,9 +1,3 @@
-# ================================================
-# 🕵️ MECHANICAL MIND BLACKOUT PROTOCOL
-# ================================================
-# FILES TO ERASE FROM ENEMY SURVEILLANCE
-# ================================================
-
 # 🔥 CRITICAL SECRETS
 MECHBOT_SECRETS.env
 *.key
