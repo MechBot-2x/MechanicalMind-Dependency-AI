@@ -1,0 +1,9 @@
+# --------------------------
+      # 🌀 PHASE 1: TERRITORY SECURE
+      # --------------------------
+      - name: "⬇️ INFILTRATE CODEBASE"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0       # Full intelligence gathering
+          token: ${{ secrets.MECHBOT_ACCESS_TOKEN }}
+          persist-credentials: false  # Operational security
