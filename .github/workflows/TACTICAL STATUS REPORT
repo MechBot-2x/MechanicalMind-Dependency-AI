@@ -1,0 +1,31 @@
+      # --------------------------
+      # 📊 PHASE 6: MISSION DEBRIEF
+      # --------------------------
+     - name: "📌 TACTICAL STATUS REPORT"
+        run: |
+          echo "=== SCAN MISSION COMPLETE ==="
+          echo "OPERATION STATUS: ${{ job.status }}"
+          echo "THREATS DETECTED: ${{ steps.mechmind-scan.outputs.issues_found }}"
+          echo "AUTO-FIXES DEPLOYED: ${{ steps.mechmind-scan.outputs.fixes_made }}"
+          echo "CRITICAL UPDATES: ${{ steps.mechmind-scan.outputs.major_updates_available }}"
+          echo "BATTLE STATION: ${{ runner.name }}"
+          echo "OS ENVIRONMENT: ${{ runner.os }}"
+          echo "============================="
+
+      - name: "🔔 ALERT SECURITY COUNCIL"
+        if: failure()
+        uses: actions/slack@v1
+        with:
+          payload: |
+            {
+              "text": "🚨 DEPENDENCY SCAN FAILURE DETECTED",
+              "attachments": [{
+                "color": "#ff0000",
+                "fields": [{
+                  "title": "Failed Operation",
+                  "value": "${{ github.workflow }}"
+                }]
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SECURITY_ALERT_WEBHOOK }}
