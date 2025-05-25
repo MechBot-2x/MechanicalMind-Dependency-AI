@@ -1,0 +1,18 @@
+-- name:
+   uses: actions/download-artifact@v4.2.1
+     with:
+    pattern: 'report-*.json'
+        path: ./custom_reports/
+          merge-multiple: true
+           github-token: ${{ secrets.CI_CD_TOKEN }}
+            repository: mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-
+              run-id: ${{ github.event.workflow_run.id }}
+              on:
+  workflow_run:
+    workflows: ["Dependency Analysis"]
+    types:
+      - completed
+
+   jobs:
+     build:
+       runs-on: ubuntu-latest
