@@ -1,4 +1,4 @@
-django==4.2.20
+django==4.2.21
 drf-yasg==1.21.7
 pytest-django==4.5.2
 -e .
