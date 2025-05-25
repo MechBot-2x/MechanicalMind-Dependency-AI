@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import click
-from ai_core import ErrorDiagnosisEngine
+from mechanicalmind_ai.core import ErrorDiagnosisEngine
 import datetime
 
 @click.command()
