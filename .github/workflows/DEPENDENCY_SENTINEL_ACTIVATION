@@ -1,0 +1,22 @@
+name: "DEPENDENCY_SENTINEL_ACTIVATION"
+
+on:
+  # 🚨 TRIGGER PROTOCOLS
+  push:
+    branches: [ "main" ]  # Primary defense perimeter
+    tags: [ "v*" ]       # Release version monitoring
+  pull_request:
+    branches: [ "main" ]  # Pre-merge security checkpoint
+  schedule:
+    - cron: "0 3 * * 1"  # Weekly deep scan (Monday 3AM UTC)
+
+# 🔐 STRATEGIC PERMISSIONS
+permissions:
+  contents: write         # Code modification clearance
+  security-events: write  # Threat intelligence reporting
+  pull-requests: write    # Countermeasure deployment
+  actions: read           # Operational awareness
+  checks: write           # Security validation stamps
+
+jobs:
+contents: write

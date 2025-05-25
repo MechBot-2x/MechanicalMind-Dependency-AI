@@ -1,0 +1,14 @@
+      # --------------------------
+      # ⚔️ PHASE 5: AUTOMATED COUNTERMEASURES
+      # --------------------------
+      - name: "🤖 DEPLOY AUTOMATED FIXES"
+        if: steps.mechmind-scan.outputs.fixes_made == 'true'
+        run: |
+          git config --global user.name 'mechmind-dwv'
+          git config --global user.email 'ia.mechmind@gmail.com'
+          git add .
+          git commit -m "⚡[AUTO-FIX] Neutralized vulnerabilities"
+          git push origin HEAD:main --force
+        env:
+          GIT_COMMITTER_NAME: "MechBot-9000"
+          GIT_COMMITTER_EMAIL: "mechbot@mechmind.io"

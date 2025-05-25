@@ -1,35 +1,37 @@
--- name:
-   uses: actions/download-artifact@v4.2.1
-     with:
-    pattern: 'report-*.json'
-        path: ./custom_reports/
-          merge-multiple: true
-           github-token: ${{ secrets.CI_CD_TOKEN }}
-            repository: mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-
-              run-id: ${{ github.event.workflow_run.id }}
-              on:
+name: Dependency Analysis Processor
+
+on:
   workflow_run:
     workflows: ["Dependency Analysis"]
     types:
       - completed
-      
-   jobs:
-     build:
-       runs-on: ubuntu-latest
+
+jobs:
+  process-reports:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Upload artifact
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: 'report-*.json'
+          path: ./custom_reports/
+          merge-multiple: true
+          github-token: ${{ secrets.CI_CD_TOKEN }}
+
+      - name: Upload processed artifact
         uses: actions/upload-artifact@v3
         with:
           name: dependency-report
           path: ./reports/
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }}
+
       - name: Process Artifacts
         run: |
           echo "Processing downloaded artifacts..."
           python ai_core/artifact_processor.py \
             --input "${{ runner.temp }}/artifacts" \
             --output ./reports/
-[![.github/workflows/main.yml](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/main.yml/badge.svg)](https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v2.0-/actions/workflows/main.yml)

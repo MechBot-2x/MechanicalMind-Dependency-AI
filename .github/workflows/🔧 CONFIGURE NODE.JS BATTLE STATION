@@ -1,0 +1,14 @@
+# --------------------------
+      # ⚡ PHASE 2: ARMAMENT SETUP
+      # --------------------------
+      - name: "🔧 CONFIGURE NODE.JS BATTLE STATION"
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'   # Special forces edition
+          cache: 'npm'        # Accelerated armament
+          cache-dependency-path: 'package-lock.json'
+
+      - name: "💣 LOAD DEPENDENCY MUNITIONS"
+        run: npm ci --prefer-offline  # Offline survival mode
+        env:
+          NODE_ENV: "production"

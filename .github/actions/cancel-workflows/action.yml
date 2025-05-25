@@ -1,0 +1,14 @@
+name: 'Cancel Old Workflows'
+description: 'Cancela workflows que llevan más de X horas ejecutándose'
+inputs:
+  token:
+    description: 'Token de GitHub'
+    required: true
+  hours:
+    description: 'Horas máximas de ejecución'
+    required: true
+    default: '24'
+    
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

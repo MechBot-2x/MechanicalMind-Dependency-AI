@@ -1,0 +1,15 @@
+# --------------------------
+      # 🔥 PHASE 3: SCAN ENGAGEMENT
+      # --------------------------
+      - name: "🚀 LAUNCH AI SCAN MISSILE"
+        id: mechmind-scan
+        uses: mechmind/ai-dependency-action@v3.0.1
+        with:
+          version: '3.0.1'            # Weapon system version
+          strategy: 'full-assault'    # No mercy mode
+          github-token: ${{ secrets.MECHBOT_ACCESS_TOKEN }}
+          scan-modules: true          # Deep module infiltration
+          output-format: 'sarif'      # Military-grade reporting
+          fail-on: 'critical'         # Zero tolerance
+        env:
+          AI_MODE: "predator"

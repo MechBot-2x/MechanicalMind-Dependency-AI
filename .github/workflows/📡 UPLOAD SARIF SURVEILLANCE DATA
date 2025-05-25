@@ -1,0 +1,9 @@
+# --------------------------
+      # 📡 PHASE 4: INTELLIGENCE REPORTING
+      # --------------------------
+      - name: "📡 UPLOAD SARIF SURVEILLANCE DATA"
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: results.sarif
+          category: "dependency-threats"
+          checkout-path: ${{ github.workspace }}
