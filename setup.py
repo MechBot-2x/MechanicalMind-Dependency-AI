@@ -6,7 +6,7 @@ setup(
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
-        "django==4.2.20",
+        "django=4.2.21",
         "drf-yasg==1.21.7",
     ],
 )
