@@ -32,12 +32,14 @@ jobs:
   dependency-scan:
     name: "TACTICAL_SCAN_OPERATION"
     runs-on: [self-hosted, linux, x64]  # MechMind Battle Station
+    contents: write         # Code modification clearance
     
     # ⚙️ OPERATIONAL PARAMETERS
     timeout-minutes: 30  # Mission duration limit
     env:
       DEFCON: 1          # Maximum alert status
       SCAN_MODE: "aggressive"
+      security-events: write  # Threat intelligence reporting
 
     steps:
       # --------------------------
@@ -102,6 +104,7 @@ jobs:
           git add .
           git commit -m "⚡[AUTO-FIX] Neutralized vulnerabilities"
           git push origin HEAD:main --force
+          pull-requests: write    # Countermeasure deployment
         env:
           GIT_COMMITTER_NAME: "MechBot-9000"
           GIT_COMMITTER_EMAIL: "mechbot@mechmind.io"
@@ -117,6 +120,7 @@ jobs:
           labels: "security,priority-1"
           assignees: "@mechbot-security-team"
           milestone: 1
+          output-format: 'sarif'      # Military-grade reporting
 
       # --------------------------
       # 📊 PHASE 6: MISSION DEBRIEF
@@ -144,11 +148,11 @@ jobs:
                 "fields": [{
                   "title": "Failed Operation",
                   "value": "${{ github.workflow }}"
+                  checks: write           # Security validation stamps
                 }]
               }]
             }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SECURITY_ALERT_WEBHOOK }}
+        
 
 # ====================================================
 # 🏁 MISSION PARAMETERS SUMMARY
