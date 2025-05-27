@@ -153,4 +153,4 @@ Apache 2.0 with Commons Clause - See [LICENSE](LICENSE)
 
 ---
 
-**MechanicalMind AI** © 2023 - Dependency Management Reimagined
+**MechanicalMind AI** © 2025 - Dependency Management Reimagined
