@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Configuración inicial del entorno para MechanicalMind Dependency AI v2.0
+# Configuración inicial del entorno para MechanicalMind Dependency AI v3.0
 
 echo "🚀 Iniciando configuración del entorno..."
 
