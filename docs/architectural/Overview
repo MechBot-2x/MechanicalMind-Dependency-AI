@@ -1,0 +1,15 @@
+## 🧩 Architecture Overview
+
+```mermaid
+graph TD
+    A[CLI Interface] --> B[Core Engine]
+    B --> C[Analysis Module]
+    B --> D[Resolution Module]
+    C --> E[Version Compatibility Matrix]
+    C --> F[Conflict Predictor]
+    D --> G[Auto-Fix Strategies]
+    D --> H[Manual Resolution Guide]
+    E --> I[Knowledge Base]
+    F --> I
+    G --> I
+```
