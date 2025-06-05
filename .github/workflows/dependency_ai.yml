@@ -12,7 +12,7 @@ on:
   push:
     branches: [ "main" ]  # Primary defense perimeter
     tags: [ "v*" ]       # Release version monitoring
-  pull_request:
+  pull_request: write
     branches: [ "main" ]  # Pre-merge security checkpoint
   schedule:
     - cron: "0 3 * * 1"  # Weekly deep scan (Monday 3AM UTC)
