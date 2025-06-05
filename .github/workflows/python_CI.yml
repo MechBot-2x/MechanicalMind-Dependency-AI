@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         python-version: ["3.9", "3.10", "3.11"]
 
@@ -49,4 +49,4 @@ jobs:
     - name: Upload coverage
       uses: codecov/codecov-action@v3
       with:
-        fail_ci_if_error: false
+        fail_ci_if_error: true
