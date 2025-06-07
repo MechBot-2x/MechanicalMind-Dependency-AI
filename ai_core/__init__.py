@@ -2,7 +2,7 @@ import warnings
 from pathlib import Path
 
 # Suppress RuntimeWarnings during specific imports
-with warnings.catch_warnings():
+with warnings.catch_warnings():Add commentMore actions
     warnings.simplefilter("ignore", category=RuntimeWarning)
     # Local module imports
     from .dependency_analyzer import DependencyAnalyzer, main as analyzer_main

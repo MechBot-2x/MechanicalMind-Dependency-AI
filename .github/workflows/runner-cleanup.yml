@@ -14,8 +14,8 @@ jobs:
       - name: Limpiar runners offline
         uses: actions/cleanup-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          remove-token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.RUNNER_CLEANUP_TOKEN }}  # Token personalizado
+          remove-token: ${{ secrets.RUNNER_CLEANUP_TOKEN }}  # Token personalizado
           exclude-running: true
           min-age-days: 1
           dry-run: false

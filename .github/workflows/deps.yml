@@ -3,7 +3,7 @@ name: Enhanced Dependency Scan with Security Checks
 on:
   push:
     branches: [ main ]
-  pull_request:
+  pull_requests: wite
     branches: [ main ]
 
 permissions:
@@ -52,8 +52,8 @@ jobs:
       - name: Commit Auto-Fixes
         if: steps.dependency-scan.outputs.fixes_made == 'true'
         run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
+          git config --global user.name 'mechmind-dwv'
+          git config --global user.email 'mechmind-dwv@github.com'
           git add .
           git commit -m "Automated dependency fixes from scan"
           git push

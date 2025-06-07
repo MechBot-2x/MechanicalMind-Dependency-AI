@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock
-from ai_core.dependency_analyzer import DependencyAnalyzer
+from mechanicalmind_ai.core.dependency_analyzer import DependencyAnalyzer
 
 def get_mock_analyzer():
     analyzer = DependencyAnalyzer()

@@ -1,14 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='MechanicalMindDependencyAI',
-    version='1.0.0',
-    packages=find_packages(),
+    name="mechanicalmind_ai",
+    version="4.0.0",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
     install_requires=[
-        # Add dependencies here
+        "django=4.2.21",
+        "drf-yasg==1.21.7",
     ],
-    description='Description of your project',
-    author='mechmind-dwv',
-     author_email='ia.mechmind@gmail.com',
-    url='https://github.com/mechmind-dwv/-MechanicalMind-Dependency-AI-v3.0-',
 )
