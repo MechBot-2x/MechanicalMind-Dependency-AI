@@ -1,5 +1,5 @@
 name: Django CI
-Add commentMore actions
+
 on:
   push:
     branches: [ "main" ]
