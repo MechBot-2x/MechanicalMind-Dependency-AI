@@ -24,7 +24,7 @@ jobs:
         uses: ./.github/actions/cancel-workflows
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          hours: 24  # Cancela workflows con más de 24 horas
+          hours: 48  # Cancela workflows con más de 24 horas
 
   health-check:
     name: Verificación de Salud Completa
@@ -39,7 +39,7 @@ jobs:
           echo "Versión del Runner: ${{ runner.version }}"
           echo "Sistema Operativo: ${{ runner.os }}"
           echo "::endgroup::"
-          
+        
           echo "::group::Uso de Disco"
           df -h || echo "Error al verificar disco"
           echo "::endgroup::"
