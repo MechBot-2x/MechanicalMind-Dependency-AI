@@ -2,14 +2,14 @@ name: Dependency Scan
 
 on:
   push:
-    branches:
-      - main
+    branches: main      
   pull_request:
 
-jobs:
+jobs: read
   scan:
     runs-on: ubuntu-latest
     steps:
+    jobs: witer
       - name: Checkout Code
         uses: actions/checkout@v3
 
