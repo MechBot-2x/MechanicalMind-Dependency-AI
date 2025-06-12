@@ -18,7 +18,7 @@ jobs:
           remove-token: ${{ secrets.RUNNER_CLEANUP_TOKEN }}  # Token personalizado
           exclude-running: true
           min-age-days: 1
-          dry-run: false
+          dry-run: true
           
       - name: Terminar workflows obsoletos
         uses: ./.github/actions/cancel-workflows
