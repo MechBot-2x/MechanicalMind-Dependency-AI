@@ -1,7 +1,7 @@
 name: Ejecución en runners Ubuntu
-on: [push]
+on: push
 
-jobs:
+jobs: read
   check-version:
     runs-on: 
       group: ubuntu-runners
