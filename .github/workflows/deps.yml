@@ -53,7 +53,7 @@ jobs:
         if: steps.dependency-scan.outputs.fixes_made == 'true'
         run: |
           git config --global user.name 'mechmind-dwv'
-          git config --global user.email 'mechmind-dwv@github.com'
+          git config --global user.email 'ia.mechmind@gmail.com'
           git add .
           git commit -m "Automated dependency fixes from scan"
           git push
