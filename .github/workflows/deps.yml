@@ -2,9 +2,9 @@ name: Enhanced Dependency Scan with Security Checks
 
 on:
   push:
-    branches: [ main ]
+    branches:  main 
   pull_requests: wite
-    branches: [ main ]
+    branches:  main 
 
 permissions:
   contents: write  # For pushing changes/fixes
