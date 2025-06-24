@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 # Identidad del proyecto
-name = "mechanicalmind-ai"  # Nombre técnico único
+name = "mechanicalmind_ai"  # Nombre técnico único
 dynamic = ["version"]  # Versión gestionada automáticamente (recomendado)
 
 # Metadatos esenciales
@@ -19,8 +19,8 @@ requires-python = ">=3.9"  # Python moderno como base
 
 # Autores principales (equipo IA)
 authors = [
-    {name = "Benjamín Cabeza Duran", email = "benjamin@mechmind.ai"},
-    {name = "Deepseek AI Core Team", email = "ai-core@mechmind.ai"}
+    {name = "Benjamín Cabeza Duran", email = "benjamin.cabezaduran@gmail.com"},
+    {name = "Deepseek AI Core Team", email = "ia.mechmind@gmail.com"}
 ]
 
 # Características técnicas
@@ -40,7 +40,7 @@ classifiers = [
 
 # Sistema de gestión de versiones avanzado
 [tool.setuptools_scm]
-write_to = "src/mechanicalmind/_version.py"
+write_to = "src/mechanicalmind_ia/_version.py"
 version_scheme = "post-release"
 local_scheme = "dirty-tag"
 
