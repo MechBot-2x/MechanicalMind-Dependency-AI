@@ -1,5 +1,5 @@
 """
-MechanicalMind Knowledge Base Package v3.0
+MechanicalMind Knowledge Base Package v2.0
 Initialization for knowledge base modules
 """
 

@@ -1,5 +1,4 @@
 # MechanicalMind Dependency AI v3.0
-[![Ejecución en runners Ubuntu](https://github.com/MechBot-2x/-MechanicalMind-Dependency-AI-v3.0-/actions/workflows/Ci.yml/badge.svg)](https://github.com/MechBot-2x/-MechanicalMind-Dependency-AI-v3.0-/actions/workflows/Ci.yml)
 
 ![MechMind Logo](https://via.placeholder.com/150x50?text=MechMind+AI)  
 **Advanced Dependency Management with AI-Powered Resolution**
@@ -154,4 +153,4 @@ Apache 2.0 with Commons Clause - See [LICENSE](LICENSE)
 
 ---
 
-**MechanicalMind AI** © 2025 - Dependency Management Reimagined
+**MechanicalMind AI** © 2023 - Dependency Management Reimagined

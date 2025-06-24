@@ -1,11 +1,11 @@
 name: Ejecución en runners Ubuntu
-on: push
+on: [push]
 
-jobs: read
+jobs:
   check-version:
     runs-on: 
       group: ubuntu-runners
-      labels: ubuntu-20.04-16 core
+      labels: ubuntu-20.04-16core
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

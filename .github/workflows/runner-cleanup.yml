@@ -14,17 +14,17 @@ jobs:
       - name: Limpiar runners offline
         uses: actions/cleanup-action@v3
         with:
-          token: ${{ secrets.RUNNER_CLEANUP_TOKEN }}  # Token personalizado
-          remove-token: ${{ secrets.RUNNER_CLEANUP_TOKEN }}  # Token personalizado
+          token: ${{ secrets.GITHUB_TOKEN }}
+          remove-token: ${{ secrets.GITHUB_TOKEN }}
           exclude-running: true
           min-age-days: 1
-          dry-run: true
+          dry-run: false
           
       - name: Terminar workflows obsoletos
         uses: ./.github/actions/cancel-workflows
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          hours: 48  # Cancela workflows con más de 24 horas
+          hours: 24  # Cancela workflows con más de 24 horas
 
   health-check:
     name: Verificación de Salud Completa
@@ -39,7 +39,7 @@ jobs:
           echo "Versión del Runner: ${{ runner.version }}"
           echo "Sistema Operativo: ${{ runner.os }}"
           echo "::endgroup::"
-        
+          
           echo "::group::Uso de Disco"
           df -h || echo "Error al verificar disco"
           echo "::endgroup::"
