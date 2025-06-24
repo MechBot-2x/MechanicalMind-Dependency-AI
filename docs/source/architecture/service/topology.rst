@@ -1,4 +1,3 @@
-```rst
 Service Topology
 ================
 
@@ -7,4 +6,3 @@ Service Topology
        A[API Layer] --> B[Data Pipeline]
        A --> C[Admin Console]
        B --> D[(Knowledge Base)]
-```
