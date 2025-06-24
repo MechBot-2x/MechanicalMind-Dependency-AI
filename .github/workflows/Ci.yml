@@ -1,5 +1,5 @@
 name: Ejecución en runners Ubuntu
-on: push
+on: push requesch
 
 jobs: read
   check-version:
