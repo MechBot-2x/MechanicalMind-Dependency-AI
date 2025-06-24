@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /data/data/com.termux/files/home/MechMind-AI-v3/.venv
+set -gx VIRTUAL_ENV /data/data/com.termux/files/home/-MechanicalMind-Dependency-AI-v3.0-/.venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
