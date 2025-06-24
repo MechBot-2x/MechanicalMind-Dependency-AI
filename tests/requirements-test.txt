@@ -1,3 +1,4 @@
+# requirements-test.txt
 pytest>=7.0.0
 pytest-django>=4.5.0
 factory-boy>=3.0.0

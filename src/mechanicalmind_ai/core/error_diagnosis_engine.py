@@ -1,5 +1,5 @@
 """
-MechanicalMind Error Diagnosis Engine v3.0
+MechanicalMind Error Diagnosis Engine v2.0
 Core module for error analysis and resolution
 """
 

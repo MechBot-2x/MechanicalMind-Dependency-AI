@@ -1,25 +1,10 @@
 name: Enhanced Dependency Scan with Security Checks
-2 months ago
-
-Update deps.yml
 
 on:
   push:
-7 minutes ago
-
-Update deps.yml
-    branches:  [main]
-2 weeks ago
-
-Update deps.yml
-  pull_requests: wite
-7 minutes ago
-
-Update deps.yml
-    branches: [main]
-last month
-
-Update deps.yml
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 permissions:
   contents: write  # For pushing changes/fixes
@@ -27,31 +12,13 @@ permissions:
   security-events: write  # For reporting security issues
   actions: read  # For workflow operations
   checks: write  # For creating check runs
-2 months ago
-
-Update deps.yml
 
 jobs:
-last month
-
-Update deps.yml
   dependency-scan:
     name: Dependency Scan & Security Analysis
-2 months ago
-
-Update deps.yml
     runs-on: ubuntu-latest
-last month
-
-Update deps.yml
     
-2 months ago
-
-Update deps.yml
     steps:
-last month
-
-Update deps.yml
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
@@ -85,17 +52,8 @@ Update deps.yml
       - name: Commit Auto-Fixes
         if: steps.dependency-scan.outputs.fixes_made == 'true'
         run: |
-2 weeks ago
-
-Update deps.yml
-          git config --global user.name 'mechmind-dwv'
-4 days ago
-
-Update deps.yml
-          git config --global user.email 'ia.mechmind@gmail.com'
-last month
-
-Update deps.yml
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
           git add .
           git commit -m "Automated dependency fixes from scan"
           git push
