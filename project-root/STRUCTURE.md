@@ -1,3 +1,4 @@
+```
 project-root/
 ├── src/
 │   └── your_package/
@@ -5,3 +6,4 @@ project-root/
 ├── setup.py
 ├── pyproject.toml
 └── requirements.txt
+```
