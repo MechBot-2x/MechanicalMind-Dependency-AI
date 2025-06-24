@@ -1,3 +1,4 @@
+  graph
     A[CLI Interface] --> B[Core Engine]
     B --> C[Analysis Module]
     B --> D[Resolution Module]
