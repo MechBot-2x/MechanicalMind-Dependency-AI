@@ -108,4 +108,4 @@ exclude = '''
   | build
   | dist
 )/
-```
+'''
