@@ -1,4 +1,4 @@
-name: Ejecución en runners Ubuntu
+name: Running on Ubuntu runners
 on: [push, pull_request]
 
 jobs: read
