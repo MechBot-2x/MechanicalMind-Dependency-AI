@@ -1,5 +1,3 @@
-unit_tests/test_dependency_analyzer.py
-
 importar prueba unitaria
 de biblioteca de rutas importar Camino
 de prueba unitaria.imitar importar parche,Simulacro mágico
