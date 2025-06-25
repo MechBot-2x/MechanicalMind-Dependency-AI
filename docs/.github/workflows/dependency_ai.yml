@@ -1,0 +1,35 @@
+name: MechanicalMind Dependency AI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  dependency-scan:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11"]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Run Dependency Analyzer
+      run: |
+        python -m ai_core.dependency_analyzer --repo $GITHUB_REPOSITORY
+        python -m ai_core.error_diagnosis_engine --log-path ./logs/
+    
+    - name: Upload Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: dependency-report
+        path: |
+          ./dependency_graph.json
+          ./error_analysis.md
