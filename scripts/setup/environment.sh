@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 # Configuración inicial del entorno para MechanicalMind Dependency AI v3.0
 echo "🚀 Iniciando configuración del entorno..."
 # 1. Validar si Python está instalado
