@@ -1,7 +1,7 @@
 name: Running on Ubuntu runners
 on: [push, pull_request]
 
-jobs: read
+jobs:
   check-version:
     runs-on: 
       group: ubuntu-runners
