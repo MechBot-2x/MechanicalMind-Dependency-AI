@@ -1,4 +1,4 @@
-- name: Dependency Scan
+name: Dependency Scan
   id: dependency-scan
   uses: mechmind/ai-dependency-action@v3.0.1
   with:
