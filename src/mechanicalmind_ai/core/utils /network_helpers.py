@@ -1,8 +1,3 @@
-"""
-MechanicalMind Network Utilities v2.0
-Helper functions for network operations
-"""
-
 import requests
 import urllib3
 from typing import Optional
