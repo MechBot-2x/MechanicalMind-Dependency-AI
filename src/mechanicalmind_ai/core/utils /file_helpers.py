@@ -1,8 +1,3 @@
-"""
-MechanicalMind File Utilities v2.0
-Helper functions for file operations
-"""
-
 from pathlib import Path
 import yaml
 import json
