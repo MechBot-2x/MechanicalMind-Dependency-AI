@@ -1,5 +1,3 @@
-# scripts/setup_runner.sh
-
 RUNNER_NAME="mechmind-ai-runner-$(hostname)"
 TOKEN=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  # Reemplazar con token real
 
