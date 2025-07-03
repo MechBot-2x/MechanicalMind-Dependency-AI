@@ -1,5 +1,5 @@
 RUNNER_NAME="mechmind-ai-runner-$(hostname)"
-TOKEN=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  # Reemplazar con token real
+TOKEN=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
 
 echo "🔧 Configurando GitHub Actions Runner para MechanicalMind AI..."
 
