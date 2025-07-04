@@ -1,0 +1,29 @@
+# ================================================
+# 🕵️ MECHANICAL MIND BLACKOUT PROTOCOL
+# ================================================
+# FILES TO ERASE FROM ENEMY SURVEILLANCE
+# ================================================
+
+# 🔥 CRITICAL SECRETS
+MECHBOT_SECRETS.env
+*.key
+*.token
+*.crt
+
+# 🗄️ OPERATIONAL ARTIFACTS
+/battle_logs/
+/scan_reports/
+/mechmind_cache/
+
+# 🚨 FAILURE TRACES
+*.stacktrace
+crash-reports/
+panic-logs/
+
+# 🧪 TEST ENVIRONMENTS
+/test_grounds/
+/experimental/
+
+# ================================================
+# WARNING: THESE FILES NEVER EXISTED
+# ================================================
