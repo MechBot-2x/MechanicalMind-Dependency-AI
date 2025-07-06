@@ -1,3 +1,8 @@
+"""
+MechanicalMind Error Diagnosis Engine v2.0
+AI-powered dependency error analysis and resolution
+"""
+
 import re
 import logging
 from typing import Dict, List
