@@ -1,4 +1,4 @@
-!/usr/bin/env python3
+#!/usr/bin/env python3
 import click
 from mechanicalmind_ai.core import ErrorDiagnosisEngine
 import datetime
