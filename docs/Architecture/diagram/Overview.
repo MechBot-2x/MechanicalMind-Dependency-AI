@@ -1,4 +1,5 @@
-    A[CLI Interface] --> B[Core Engine]
+graph_TD
+A[CLI Interface] --> B[Core Engine]
     B --> C[Analysis Module]
     B --> D[Resolution Module]
     C --> E[Version Compatibility Matrix]
