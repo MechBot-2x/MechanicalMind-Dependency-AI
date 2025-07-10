@@ -19,4 +19,4 @@
 ./scripts/reportar_vulnerabilidad.sh --tipo "inyección SQL"
 
 # O por correo con PGP
-echo "Detalle del problema" | gpg --encrypt -r seguridad@mechmind-dwv.com
+echo "Detalle del problema" | gpg --encrypt -r ia.mechmind@gmail.con
