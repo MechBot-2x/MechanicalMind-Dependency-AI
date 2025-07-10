@@ -1,110 +1,99 @@
 [build-system]
-# Sistema de construcción optimizado para IA
+# Especifica las herramientas mínimas requeridas para construir el paquete
 requires = [
-    "setuptools>=68.0.0",  # Soporte para últimas features de Python
-    "wheel>=0.40.0",       # Builds más rápidos y eficientes
-    "cython>=0.29.0"       # Para componentes críticos de rendimiento (opcional)
+    "setuptools>=65.0.0",  # Versión moderna con mejores características
+    "wheel>=0.38.0",       # Última versión estable para builds más eficientes
+    "setuptools_scm>=7.0.0" # Opcional: Para manejo automático de versiones
 ]
-build-backend = "setuptools.build_meta"
+build-backend = "setuptools.build_meta"  # Backend estándar para builds Python
 
 [project]
-# Identidad del proyecto
-name = "mechanicalmind_ai"  # Nombre técnico único
-dynamic = ["version"]  # Versión gestionada automáticamente (recomendado)
+# Metadatos básicos del proyecto
+name = "mechanicalmind-dependency-ai"  # Nombre en formato snake_case para pip
+version = "1.0.0"  # Versión inicial siguiendo SemVer (Semantic Versioning)
+description = "AI-powered dependency analysis and conflict resolution tool for modern Python projects"
+readme = "README.md"  # Archivo que contiene la documentación larga
+requires-python = ">=3.8"  # Versión mínima de Python soportada
+license = {text = "Apache-2.0"}  # Licencia del proyecto
 
-# Metadatos esenciales
-description = "Next-gen AI for intelligent dependency resolution and conflict prediction"
-readme = "README.md"
-requires-python = ">=3.9"  # Python moderno como base
-
-# Autores principales (equipo IA)
+# Información de los autores/maintainers
 authors = [
-    {name = "Benjamín Cabeza Duran", email = "benjamin.cabezaduran@gmail.com"},
-    {name = "Deepseek AI Core Team", email = "ia.mechmind@gmail.com"}
+    {name = "Benjamin Cabeza Duran", email = "benjamin.cabeza@example.com"},
+    {name = "Deepseek AI Team", email = "ai-team@example.com"}
+]
+maintainers = [
+    {name = "MechMind Maintenance Team", email = "maintenance@mechmind.ai"}
 ]
 
-# Características técnicas
+# Clasificaciones para PyPI
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "Intended Audience :: System Administrators",
-    "Framework :: Jupyter",
+    "Intended Audience :: Science/Research",
     "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
-    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
-    "Typing :: Typed"
 ]
 
-# Sistema de gestión de versiones avanzado
-[tool.setuptools_scm]
-write_to = "src/mechanicalmind_ia/_version.py"
-version_scheme = "post-release"
-local_scheme = "dirty-tag"
+# URLs importantes
+urls = { 
+    "Homepage" = "https://github.com/mechmind-dwv/MechanicalMind-Dependency-AI",
+    "Documentation" = "https://mechmind-ai.readthedocs.io",
+    "Bug Tracker" = "https://github.com/mechmind-dwv/MechanicalMind-Dependency-AI/issues",
+    "Changelog" = "https://github.com/mechmind-dwv/MechanicalMind-Dependency-AI/releases"
+}
 
-# Dependencias principales con versiones exactas para reproducibilidad
+# Dependencias principales
 dependencies = [
-    "numpy==1.24.*",  # Operaciones numéricas aceleradas
-    "scipy==1.10.*",  # Algoritmos científicos
-    "pandas==2.0.*",  # Procesamiento de datos
-    "scikit-learn==1.3.*",  # Machine Learning
-    "tqdm==4.65.*",  # Progress bars
-    "requests==2.31.*",  # HTTP avanzado
-    "packaging==23.1.*",  # Gestión de dependencias
-    "semantic-version==2.10.*",  # Análisis semántico de versiones
-    "pyyaml==6.0.*",  # Configuraciones
-    "rich==13.4.*"  # Terminal interactiva
+    "numpy>=1.21.0",  # Para operaciones numéricas eficientes
+    "pandas>=1.3.0",  # Para manejo estructurado de datos
+    "scikit-learn>=1.0.0",  # Algoritmos ML básicos
+    "tqdm>=4.0.0",  # Barras de progreso
+    "requests>=2.26.0",  # Para HTTP requests
+    "packaging>=21.0",  # Para manejo de versiones
+    "pyyaml>=6.0",  # Para configuración YAML
 ]
 
-# Features adicionales (instalables con pip install mechanicalmind-ai[ml,dev])
+# Dependencias opcionales (features adicionales)
 [project.optional-dependencies]
-ml = [
-    "tensorflow==2.12.*",
-    "torch==2.0.*",
-    "transformers==4.30.*"
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-xdist>=3.0.0",  # Para tests paralelos
+    "hypothesis>=6.0.0"  # Para property-based testing
 ]
 dev = [
-    "pytest==7.4.*",
-    "pytest-cov==4.1.*",
-    "mypy==1.4.*",
-    "black==23.7.*",
-    "flake8==6.0.*"
+    "black>=22.0",  # Formateador de código
+    "flake8>=4.0.0",  # Linter
+    "mypy>=0.900",  # Type checking
+    "isort>=5.0.0"  # Organización de imports
 ]
-gpu = [
-    "cuda-python==12.1.*",
-    "nvidia-cudnn==8.6.*"
+docs = [
+    "sphinx>=5.0.0",
+    "furo>=2022.6.0",  # Tema para documentación
+    "sphinx-copybutton>=0.5.0"
+]
+ml = [
+    "tensorflow>=2.7.0",
+    "torch>=1.10.0"
 ]
 
-# Puntos de entrada CLI profesionales
+# Puntos de entrada para scripts CLI
 [project.scripts]
-mechmind = "mechanicalmind.cli.main:app"
+mechmind-scan = "mechanicalmind.cli:scan"
+mechmind-fix = "mechanicalmind.cli:fix"
 mechmind-analyze = "mechanicalmind.cli:analyze"
-mechmind-scan = "mechanicalmind.cli:deep_scan"
 
-# Configuración de paquetes (estructura src-layout)
+# Configuración de paquetes
 [tool.setuptools]
 packages = ["mechanicalmind"]
 package-dir = {"" = "src"}
-include-package-data = true
 
-# Configuración de mypy para tipado estático
-[tool.mypy]
-python_version = "3.9"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-
-# Configuración de black para formateo
-[tool.black]
-line-length = 100
-target-version = ["py39"]
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | \.venv
-  | build
-  | dist
-)/
+# Configuración para setuptools_scm (opcional)
+[tool.setuptools_scm]
+write_to = "src/mechanicalmind/_version.py"
