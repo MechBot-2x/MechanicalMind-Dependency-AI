@@ -1,8 +1,13 @@
-  # =========================================
-  # 🕵️ ELITE DEPENDENCY RECONNAISSANCE UNIT
-  # =========================================
+name: TACTICAL_SCAN_OPERATION
+
+on:
+  workflow_dispatch:  # Permite ejecución manual
+  schedule:
+    - cron: '0 9 * * *'  # Ejecución diaria a las 09:00 UTC
+
+jobs:
   dependency-scan:
-    name: "TACTICAL_SCAN_OPERATION"
+    name: 🕵️ ELITE DEPENDENCY RECONNAISSANCE UNIT
     runs-on: [self-hosted, linux, x64]  # MechMind Battle Station
 
     # ⚙️ OPERATIONAL PARAMETERS
@@ -12,3 +17,18 @@
       SCAN_MODE: "aggressive"
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Initialize Reconnaissance
+        run: echo "Starting tactical dependency scan at DEFCON $DEFCON"
+
+      - name: Run Security Scan
+        uses: actions/dependency-review-action@v3
+        with:
+          fail-on-severity: high
+          allow-licenses: MIT, Apache-2.0
+
+      - name: Report Findings
+        if: ${{ failure() }}
+        run: echo "Critical dependencies found! Initiating countermeasures..."
