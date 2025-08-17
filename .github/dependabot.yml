@@ -1,12 +1,3 @@
-# ================================================
-# ⚡ MECHANICAL MIND DEPENDABOT STRATEGY ⚡
-# ================================================
-# ARCHITECTURE: Multi-ecosystem dependency management
-# VERSION: 2.0.1 (Elite Edition)
-# AUTHOR: MechMind Engineering Corps
-# LAST UPDATE: $(date +%Y-%m-%d)
-# ================================================
-
 version: 2
 
 updates:
@@ -69,9 +60,10 @@ updates:
     rebase-strategy: "disabled"
 
   # ======================
-  # 🛡️ SECURITY UPDATES
+  # 🛡️ SECURITY UPDATES (para cada ecosistema)
   # ======================
-  - package-ecosystem: "*"
+  # Configuración de seguridad para npm
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
@@ -84,6 +76,22 @@ updates:
     milestone: 0
     commit-message:
       prefix: "🛡️ SECURITY"
-    versioning-strategy: "auto"# - Multi-ecosystem Coverage
-# - Enterprise-Grade Control
-# ================================================
+    versioning-strategy: "auto"
+    allow:
+      - dependency-type: "direct"  # Solo dependencias directas para seguridad
+
+  # Configuración de seguridad para pip
+  - package-ecosystem: "pip"
+    directory: "/src"
+    schedule:
+      interval: "daily"
+    labels:
+      - "security"
+      - "urgent"
+    reviewers:
+      - "@mechbot-security-team"
+      - "@mechbot-senior-architects"
+    milestone: 0
+    commit-message:
+      prefix: "🛡️ SECURITY"
+    versioning-strategy: "auto"
