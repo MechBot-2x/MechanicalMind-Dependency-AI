@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  mermaid:
+    image: minlag/mermaid-cli:9.4.0
+    volumes:
+      - ./docs/architecture/diagrams:/data
+    command: >
+      sh -c "
+      cd /data &&
+      for f in *.mmd; do
+        mmdc -i \"$$f\" -o \"$${f%.*}.png\" \
+          --backgroundColor transparent \
+          --quiet;
+      done"

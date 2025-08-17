@@ -1,7 +1,7 @@
 # MechanicalMind Dependency AI v3.0
 [![Ejecución en runners Ubuntu](https://github.com/MechBot-2x/-MechanicalMind-Dependency-AI-v3.0-/actions/workflows/Ci.yml/badge.svg)](https://github.com/MechBot-2x/-MechanicalMind-Dependency-AI-v3.0-/actions/workflows/Ci.yml)
 
-![MechMind Logo](https://via.placeholder.com/150x50?text=MechMind+AI)  
+![MechMind Logo](https://via.placeholder.com/150x50?text=MechMind+AI)
 **Advanced Dependency Management with AI-Powered Resolution**
 
 ## 🚀 Key Features
@@ -155,3 +155,56 @@ Apache 2.0 with Commons Clause - See [LICENSE](LICENSE)
 ---
 
 **MechanicalMind AI** © 2025 - Dependency Management Reimagined
+
+## Generación de Diagramas
+
+Ejecutar:
+```bash
+npm run build:diagrams
+¡Perfecto! Veo que has logrado generar exitosamente los diagramas arquitectónicos y el sistema ya está funcionando correctamente. Aquí tienes un resumen del estado actual y los siguientes pasos recomendados:
+
+### Estado Actual Confirmado:
+1. **Diagramas generados correctamente**:
+   - `cache_flow.png`
+   - `core_architecture.png`
+   - `example.png`
+   - `system_context.png`
+   - `test.png`
+
+2. **Contenido de los archivos .mmd validado**:
+   ```mermaid
+   flowchart TD
+       A[Start] --> B[End]
+   ```
+
+3. **Sistema operativo**:
+   - El script local (`generate_diagrams.sh`) funciona perfectamente
+   - La solución Docker necesita ajustes menores (problema de interpolación)
+
+### Próximos Pasos Recomendados:
+
+1. **Guardar los cambios en Git**:
+```bash
+git add docs/architecture/diagrams/*.png
+git commit -m "Generación automática de diagramas arquitectónicos"
+git push
+```
+
+2. **Corregir el Docker Compose**:
+```bash
+cat > docker-compose.mermaid.yml << 'EOF'
+version: '3.8'
+services:
+  mermaid:
+    image: minlag/mermaid-cli:9.4.0
+    volumes:
+      - ./docs/architecture/diagrams:/data
+    entrypoint: ["/bin/sh", "-c"]
+    command: |
+      cd /data
+      for f in *.mmd; do
+        echo "Procesando $$f"
+        mmdc -i "$$f" -o "$${f%.*}.png" \
+          --backgroundColor transparent \
+          --quiet
+      done

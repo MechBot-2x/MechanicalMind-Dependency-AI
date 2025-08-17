@@ -1,7 +1,26 @@
 [build-system]
-requires = ["setuptools>=42"]
+requires = ["setuptools>=65.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "mechmind-ai"
 version = "0.1.0"
+dependencies = [
+    "numpy>=1.21.0",
+    "pandas>=1.3.0",
+    # Agrega aquí otras dependencias principales
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.4.0",
+    "flake8>=7.1.0",
+    "isort>=5.13.2",
+    "mypy>=1.10.0"
+]
+test = [
+    "pytest>=8.2.0",
+    "pytest-cov>=5.0.0",
+    "pytest-mock>=3.14.0",
+    "coverage>=7.5.3"
+]
