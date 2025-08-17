@@ -2,6 +2,7 @@ from unittest.mock import MagicMock
 import pytest
 from ai_core.dependency_analyzer import DependencyAnalyzer
 
+
 @pytest.fixture
 def mock_analyzer():
     analyzer = DependencyAnalyzer()

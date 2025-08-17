@@ -1,0 +1,9 @@
+# Configuración global de plantillas
+blank_issues_enabled: false
+contact_links:
+  - name: Soporte Técnico
+    url: https://mechmind.example/soporte
+    about: Problemas técnicos o configuración avanzada
+  - name: Comunidad
+    url: https://discord.gg/mechmind
+    about: Preguntas generales y discusión

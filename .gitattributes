@@ -1,0 +1,4 @@
+.venv/* linguist-vendored
+node_modules/* linguist-vendored
+*.png linguist-generated
+search/index.json linguist-generated=true

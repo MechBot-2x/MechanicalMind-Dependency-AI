@@ -8,7 +8,7 @@ inputs:
     description: 'Horas máximas de ejecución'
     required: true
     default: '48'
-    
+
 runs:
   using: 'node16'
   main: 'dist/index.js'

@@ -6,3 +6,15 @@ __pycache__/
 *.egg-info/
 venv/
 *.log
+
+# Archivos temporales
+filtered_reqs.txt
+
+# Entornos virtual
+.venv/
+
+# Node modules
+node_modules/
+
+# Mermaid CLI artifacts
+docs/architecture/diagrams/*.png

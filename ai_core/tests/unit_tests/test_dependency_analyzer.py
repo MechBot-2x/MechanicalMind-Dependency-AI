@@ -3,12 +3,13 @@ from pathlib import Path
 from unittest.mock import patch, MagicMock
 from ai_core.dependency_analyzer import DependencyAnalyzer
 
+
 class TestDependencyAnalyzer(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.test_data_dir = Path(__file__).parent / "test_data"
         cls.test_data_dir.mkdir(exist_ok=True)
-        
+
         # Crear archivo de prueba con dependencias complejas
         cls.test_file = cls.test_data_dir / "requirements_sample.txt"
         with open(cls.test_file, "w") as f:
@@ -25,7 +26,7 @@ class TestDependencyAnalyzer(unittest.TestCase):
         self.assertIn("pandas==1.3.0", result)
         self.assertNotIn("# Comentario", result)
 
-    @patch('subprocess.run')
+    @patch("subprocess.run")
     def test_get_package_dependencies(self, mock_run):
         """Test mockeado para _get_package_dependencies"""
         # Configurar mock
@@ -36,14 +37,14 @@ class TestDependencyAnalyzer(unittest.TestCase):
 
         # Ejecutar prueba
         result = self.analyzer._get_package_dependencies("numpy")
-        
+
         # Verificar resultados
         self.assertIn("Name: numpy", result)
         self.assertIn("Version: 1.21.0", result)
         self.assertIn("Requires: pandas, scipy", result)
-        mock_run.assert_called_once_with(['pip', 'show', 'numpy'], 
-                                       capture_output=True, 
-                                       text=True)
+        mock_run.assert_called_once_with(
+            ["pip", "show", "numpy"], capture_output=True, text=True
+        )
 
     def test_analyze_method(self):
         """Test para el método analyze"""
@@ -51,5 +52,6 @@ class TestDependencyAnalyzer(unittest.TestCase):
         result = self.analyzer.analyze(test_path)
         self.assertEqual(result["status"], "success")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

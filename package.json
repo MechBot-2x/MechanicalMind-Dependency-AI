@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build:diagrams": "chmod +x scripts/generate_diagrams.sh && ./scripts/generate_diagrams.sh",
+    "clean": "rm -f docs/architecture/diagrams/*.png"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^9.4.0",
+    "@puppeteer/browsers": "^2.10.6",
+    "puppeteer-core": "^24.16.2",
+    "tar-fs": "^3.1.0",
+    "ws": "^8.18.3"
+  }
+}

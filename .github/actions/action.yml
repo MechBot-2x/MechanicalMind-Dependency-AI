@@ -25,7 +25,7 @@ runs:
         echo "⚔️ ACTIVATING MECHBOT-9000"
         echo "SECURITY LEVEL: ${{ inputs.security_level }}"
         echo "SCAN MODE: ${{ inputs.scan_mode }}"
-        
+
     - name: Arm Quantum Scanners
       uses: mechmind/ai-dependency-action@v3.0.1
       with:

@@ -3,11 +3,27 @@ from pathlib import Path
 from unittest.mock import patch, MagicMock
 from ai_core.dependency_analyzer import DependencyAnalyzer
 
+
 class TestDependencyAnalyzer(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        cls.test_data_dir = Path(__file__).parent / "test_data"
-        
+
+    def setUp(self):
+        self.analyzer = DependencyAnalyzer()
+        self.test_data_dir = Path(__file__).parent / "test_data"
+        self.test_data_dir.mkdir(exist_ok=True)
+
+    # Ejemplo de test adicional para edge cases
+    def test_empty_requirements_file(self):
+        empty_file = self.test_data_dir / "empty.txt"
+        empty_file.touch()
+        result = self.analyzer.parse_requirements_txt(empty_file)
+        self.assertEqual(len(result), 0)
+
+        # Crear archivo de prueba
+        self.test_file = self.test_data_dir / "requirements_sample.txt"
+        with open(self.test_file, "w") as f:
+            f.write("numpy\npandas\n# Esto es un comentario\n\n")
+
+
     def test_parse_requirements_txt(self):
         """Test parsing standard requirements.txt"""
         analyzer = DependencyAnalyzer()
@@ -38,6 +54,4 @@ class TestDependencyAnalyzer(unittest.TestCase):
         self.assertIn("scipy", deps)
     
     # [...] Additional test cases
-
 if __name__ == '__main__':
-    unittest.main()
