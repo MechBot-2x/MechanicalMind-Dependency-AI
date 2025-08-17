@@ -1,0 +1,19 @@
+name: Update Architecture Diagrams
+on:
+  push:
+    paths:
+      - 'docs/architecture/diagrams/*.mmd'
+jobs:
+  update_diagrams:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install -g @mermaid-js/mermaid-cli
+      - run: npm run build:diagrams
+      - uses: actions/upload-artifact@v3
+        with:
+          name: architecture-diagrams
+          path: docs/architecture/diagrams/*.png

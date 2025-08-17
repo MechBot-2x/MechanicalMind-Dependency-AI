@@ -10,8 +10,9 @@ import subprocess
 from datetime import datetime
 
 def generate_docs():
-    with open('docs/STATUS.md', 'w') as f:
-        f.write(f"# Estado del Proyecto\n\n")
+    """Generate project status documentation"""
+    with open('STATUS.md', 'w', encoding='utf-8') as f:
+        f.write("# Estado del Proyecto\n\n")
         f.write(f"Última actualización: {datetime.now()}\n\n")
         f.write("```bash\n")
         f.write(subprocess.getoutput("mechmind version --full"))

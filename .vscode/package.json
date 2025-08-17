@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build:diagrams": "cd docs/architecture/diagrams && for f in *.mmd; do mmdc -i $f -o ${f%.*}.png; done"
+  }
+}

@@ -1,0 +1,7 @@
+%% Ejemplo de diagrama de arquitectura principal
+flowchart TD
+    A[Frontend] --> B[API Gateway]
+    B --> C[Microservice 1]
+    B --> D[Microservice 2]
+    C --> E[(Database)]
+    D --> E

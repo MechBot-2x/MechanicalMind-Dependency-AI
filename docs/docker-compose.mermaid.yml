@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  mermaid:
+    image: minlag/mermaid-cli:latest
+    volumes:
+      - ./docs/architecture/diagrams:/data
+      - ./scripts/mermaid.css:/styles.css:ro
+    environment:
+      - MMDC_CACHE=/tmp
+    command: >
+      sh -c "find /data -name '*.mmd' -exec sh -c '
+        echo \"Generando: \$(basename {})\";
+        mmdc -i \"{}\" -o \"/data/\$(basename {} .mmd).png\" \
+          --backgroundColor transparent \
+          --cssFile /styles.css \
+          --quiet
+      ' \;"

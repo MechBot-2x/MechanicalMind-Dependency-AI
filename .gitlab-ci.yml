@@ -1,0 +1,10 @@
+
+# Documentación
+docs-integration:
+  stage: docs
+  script: ./scripts/integrate_docs.sh
+
+# Documentación
+docs-integration:
+  stage: docs
+  script: ./scripts/integrate_docs.sh
