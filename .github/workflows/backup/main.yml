@@ -1,15 +1,11 @@
-name: CI
- on: [push]
- jobs:
-   test:
-     runs-on: ubuntu-latest
-     steps:
-       - uses: actions/checkout@v2
+name: Dependency Report Processor
+
 on:
+  push:
+    branches: [main]
   workflow_run:
     workflows: ["Dependency Analysis"]
-    types:
-      - completed
+    types: [completed]
 
 jobs:
   process-reports:
@@ -26,6 +22,13 @@ jobs:
           merge-multiple: true
           github-token: ${{ secrets.CI_CD_TOKEN }}
 
+      - name: Process Artifacts
+        run: |
+          echo "Processing downloaded artifacts..."
+          python ai_core/artifact_processor.py \
+            --input "${{ runner.temp }}/artifacts" \
+            --output ./reports/
+
       - name: Upload processed artifact
         uses: actions/upload-artifact@v3
         with:
@@ -33,10 +36,3 @@ jobs:
           path: ./reports/
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ARTIFACT_ACCESS_TOKEN }}
-
-      - name: Process Artifacts
-        run: |
-          echo "Processing downloaded artifacts..."
-          python ai_core/artifact_processor.py \
-            --input "${{ runner.temp }}/artifacts" \
-            --output ./reports/
