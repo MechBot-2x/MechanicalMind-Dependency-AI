@@ -1,0 +1,9 @@
+/* Estilos mínimos para los diagramas */
+.mermaid {
+    font-family: 'Arial';
+    background-color: transparent;
+}
+
+.node rect, .node circle {
+    stroke-width: 2px;
+}

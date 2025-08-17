@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/home/MechMind-AI-v3/.venv/bin/python3
+#!/home/min/-MechanicalMind-Dependency-AI-v3.0-/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

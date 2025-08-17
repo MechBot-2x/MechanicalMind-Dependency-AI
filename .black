@@ -1,0 +1,11 @@
+[extend-exclude]
+/(
+    \.venv/
+  | node_modules/
+  | ai_core/api/server\.py
+  | docs/autodoc\.py
+  | ai_core/utils/network_helpers\.py
+  | ai_core/auto_fix_module\.py
+  | scripts/cli\.py
+  | src/mechanicalmind/__init__\.py
+)/

@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build:diagrams": "./scripts/generate_diagrams.sh"
+  }
+}

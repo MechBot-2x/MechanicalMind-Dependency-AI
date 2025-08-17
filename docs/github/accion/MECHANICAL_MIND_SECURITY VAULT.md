@@ -189,7 +189,7 @@ runs:
         echo "⚔️ ACTIVATING MECHBOT-9000"
         echo "SECURITY LEVEL: ${{ inputs.security_level }}"
         echo "SCAN MODE: ${{ inputs.scan_mode }}"
-        
+
     - name: Arm Quantum Scanners
       uses: mechmind/ai-dependency-action@v3.0.1
       with:
@@ -208,24 +208,24 @@ runs:
 
 ## **🔐 SECURITY ARCHITECTURE SUMMARY**
 
-1. **Vault-Tight Secret Management**  
-   - Multi-layer credential encryption  
-   - Crisis-only override codes  
-   - Automated secret rotation protocol  
+1. **Vault-Tight Secret Management**
+   - Multi-layer credential encryption
+   - Crisis-only override codes
+   - Automated secret rotation protocol
 
-2. **Weaponized Dependencies**  
-   - Military-grade scanning tools  
-   - Fail-secure architecture  
-   - Zero-day threat prediction  
+2. **Weaponized Dependencies**
+   - Military-grade scanning tools
+   - Fail-secure architecture
+   - Zero-day threat prediction
 
-3. **Operational Security**  
-   - Complete artifact blackout  
-   - Stealth git protocols  
-   - Auto-purge failure traces  
+3. **Operational Security**
+   - Complete artifact blackout
+   - Stealth git protocols
+   - Auto-purge failure traces
 
-4. **Strategic Documentation**  
-   - Classified access levels  
-   - Emergency procedures  
-   - Real-time monitoring integration  
+4. **Strategic Documentation**
+   - Classified access levels
+   - Emergency procedures
+   - Real-time monitoring integration
 
 This suite transforms your repository into an **impenetrable cyber fortress**, where every dependency is guarded by MechBot-9000's relentless AI sentinels! 🔥
