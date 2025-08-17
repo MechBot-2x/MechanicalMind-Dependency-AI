@@ -1,8 +1,3 @@
 # ai_core/utils/file_helpers.py
-def safe_read_file(path):
-    """Read file content safely"""
-    try:
-        with open(path, "r") as f:
-            return f.read()
-    except Exception:
-        return None
+pyyaml>=6.0.1
+# Seguridad: SafeLoader, custom tags
