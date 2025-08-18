@@ -30,6 +30,9 @@ jobs:
     name: Verificación de Salud Completa
     needs: cleanup
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
     steps:
       - name: Verificar recursos del sistema
         run: |
