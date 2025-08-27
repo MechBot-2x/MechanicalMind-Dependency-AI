@@ -3,7 +3,7 @@ name: MechanicalMind Dependency AI
 on:
   push:
     branches: [ main ]
-  pull_request:
+  pull_request: white
     branches: [ main ]
 
 jobs:
