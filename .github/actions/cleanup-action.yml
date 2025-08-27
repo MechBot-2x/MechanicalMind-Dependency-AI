@@ -1,0 +1,20 @@
+cleanup:
+    name: Limpieza Avanzada de Runners
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Limpiar runners offline
+        uses: actions/cleanup-action@v4
+        with:
+          token: ${{ secrets.RUNNER_CLEANUP_TOKEN }}  # Token personalizado
+          remove-token: ${{ secrets.RUNNER_CLEANUP_TOKEN }}  # Token personalizado
+          exclude-running: true
+          min-age-days: 1
+          dry-run: true
+          
+      - name: Terminar workflows obsoletos
+        uses: ./.github/actions/cancel-workflows
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          hours: 24  # Cancela workflows con más de 24 horas
