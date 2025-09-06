@@ -9,7 +9,7 @@ jobs:
     name: Limpieza Avanzada de Runners
     runs-on: ubuntu-latest
     permissions:
-      actions: write
+      actions: read
     steps:
       - name: Limpiar runners offline
         uses: actions/cleanup-action@v4
@@ -30,6 +30,8 @@ jobs:
     name: Verificación de Salud Completa
     needs: cleanup
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Verificar recursos del sistema
         run: |
