@@ -1,0 +1,11 @@
+version: ‘3.8’
+services: mermaid:
+    image: minlag/mermaid-cli:9.4.0
+    volumes.
+    ./zdocs/architecture/diagrams:/data
+    entrypoint: [“/bin/sh”, “-c”]
+    command: | 
+    cd /data for f in .mmd; do echo
+    “Procesando \(f "mmdc -i "\)f” -o
+    “$${f%.}.png”–backgroundColor 
+           transparent–quiet done
