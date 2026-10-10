@@ -7,6 +7,9 @@ class TestDependencyAnalyzer(unittest.TestCase):
         self.analyzer = DependencyAnalyzer()
         self.test_data_dir = Path(__file__).parent / "test_data"
         self.test_data_dir.mkdir(exist_ok=True)
+        self.test_file = self.test_data_dir / "requirements_sample.txt"
+        with open(self.test_file, "w") as f:
+            f.write("numpy\npandas\n# Esto es un comentario\n\n")
         
     # Ejemplo de test adicional para edge cases
     def test_empty_requirements_file(self):
