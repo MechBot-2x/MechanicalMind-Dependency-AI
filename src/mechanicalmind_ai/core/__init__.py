@@ -9,6 +9,7 @@ from .analyzer import DependencyAnalyzer
 from .auto_fix_module import DependencyAutoFixer
 from .compatibility_matrix import CompatibilityMatrix
 from .error_diagnosis_engine import ErrorDiagnosisEngine
+from .monitor import ChangeSet, DependencyMonitor
 from .scanner import Package, ProjectScanner, ScanResult
 
 # ─── Utilidades ───
@@ -33,6 +34,8 @@ __all__ = [
     "DependencyAutoFixer",
     "CompatibilityMatrix",
     "ErrorDiagnosisEngine",
+    "DependencyMonitor",
+    "ChangeSet",
     "ProjectScanner",
     "ScanResult",
     "Package",

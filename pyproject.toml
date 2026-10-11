@@ -49,6 +49,7 @@ dev = [
     "black>=22.0",
     "ruff>=0.6.0",
     "isort>=5.0.0",
+    "pytest-timeout>=2.0",
 ]
 docs = [
     "sphinx>=5.0.0",
@@ -88,6 +89,8 @@ norecursedirs = [
 ]
 addopts = "-v --tb=short"
 python_files = ["test_*.py", "*_test.py"]
+timeout = 20
+timeout_method = "thread"
 
 [tool.ruff]
 line-length = 100

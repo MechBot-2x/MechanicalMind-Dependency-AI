@@ -183,9 +183,27 @@ def version() -> None:
 
 
 @cli.command()
-def monitor() -> None:
-    """(Roadmap) Monitoreo en tiempo real. Aún no implementado."""
-    click.echo("🚧 `monitor` está en roadmap. Disponible en una futura versión.")
+@click.option("--path", "-p", default=".", help="Directorio a vigilar.")
+@click.option("--interval", "-i", type=float, default=10.0, help="Segundos entre chequeos.")
+@click.option("--once", is_flag=True, help="Corre un solo chequeo y sale (útil para CI).")
+def monitor(path: str, interval: float, once: bool) -> None:
+    """Vigila cambios en las dependencias de un proyecto."""
+    from mechanicalmind_ai.core import DependencyMonitor
+
+    mon = DependencyMonitor(path=path)
+
+    if once:
+        changes = mon.run_once()
+        if changes.is_empty:
+            click.echo("✅ Sin cambios en el primer escaneo.")
+        else:
+            click.echo("🔔 Estado inicial capturado:")
+            for pkg in changes.added:
+                click.echo(f"  + [{pkg.ecosystem:6}] {pkg.name} {pkg.version}")
+        return
+
+    click.echo(f"👁  Vigilando {mon.path} cada {interval}s (Ctrl-C para salir)")
+    mon.watch(interval=interval)
 
 
 @cli.command()

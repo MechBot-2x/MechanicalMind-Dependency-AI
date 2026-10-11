@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from click.testing import CliRunner
 
@@ -54,18 +55,32 @@ class TestCLI(unittest.TestCase):
         self.assertEqual(result.exit_code, 0, msg=result.output)
         self.assertIn("sha256:", result.output)
 
-    def test_fix_runs(self):
+    @patch(
+        "mechanicalmind_ai.core.utils.network_helpers.get_pypi_package_info",
+        return_value=None,
+    )
+    def test_fix_runs(self, mock_pypi):
+        """Fix sin red: mockea PyPI para no colgarse esperando HTTP."""
         result = self.runner.invoke(
             cli,
             ["fix", "--error-type", "VERSION_NOT_FOUND", "--package", "requests"],
         )
         self.assertEqual(result.exit_code, 0, msg=result.output)
         self.assertIn("Auto-Fix", result.output)
+        # El mock debe haber sido llamado (o al menos no crashear)
+        mock_pypi.assert_called()
 
-    def test_monitor_stub(self):
-        result = self.runner.invoke(cli, ["monitor"])
-        self.assertEqual(result.exit_code, 0)
-        self.assertIn("roadmap", result.output)
+    def test_monitor_once(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            (Path(tmp) / "requirements.txt").write_text("requests>=2.26\n")
+            result = self.runner.invoke(cli, ["monitor", "--path", tmp, "--once"])
+            self.assertEqual(result.exit_code, 0, msg=result.output)
+            self.assertIn("requests", result.output)
+
+    def test_monitor_stub_removed(self):
+        """Ya no es un stub: debe tener --once."""
+        result = self.runner.invoke(cli, ["monitor", "--help"])
+        self.assertIn("--once", result.output)
 
 
 if __name__ == "__main__":
