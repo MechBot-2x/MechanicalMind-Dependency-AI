@@ -1,3 +1,7 @@
+import os
+
+os.environ["MECHMIND_NO_TELEMETRY"] = "1"  # no escribir en $HOME durante tests
+
 """Tests del CLI (V3)."""
 
 import json
