@@ -1,4 +1,4 @@
-!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Sistema de Documentación Automatizada
 Actualiza cada 24h con:

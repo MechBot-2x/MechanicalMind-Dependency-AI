@@ -19,7 +19,7 @@ jobs:
           exclude-running: true
           min-age-days: 1
           dry-run: false
-          
+
       - name: Terminar workflows obsoletos
         uses: ./.github/actions/cancel-workflows
         with:
@@ -39,19 +39,19 @@ jobs:
           echo "Versión del Runner: ${{ runner.version }}"
           echo "Sistema Operativo: ${{ runner.os }}"
           echo "::endgroup::"
-          
+
           echo "::group::Uso de Disco"
           df -h || echo "Error al verificar disco"
           echo "::endgroup::"
-          
+
           echo "::group::Memoria"
           free -m || echo "Error al verificar memoria"
           echo "::endgroup::"
-          
+
           echo "::group::CPU"
           (nproc && lscpu | grep "Model name") || echo "Error al verificar CPU"
           echo "::endgroup::"
-          
+
       - name: Verificar estado de GitHub Actions
         run: |
           echo "::group::Estado del Servicio GitHub"
@@ -59,13 +59,13 @@ jobs:
             jq -r '.components[] | select(.name == "Actions") | "Status: \(.status)\nUpdated: \(.updated_at)"' || \
             echo "Error al verificar estado de GitHub"
           echo "::endgroup::"
-          
+
       - name: Verificar conexión con GitHub
         run: |
           echo "::group::Prueba de Conexión"
           curl -I https://api.github.com | grep HTTP || echo "Error en la conexión"
           echo "::endgroup::"
-          
+
       - name: Notificar estado
         if: always()
         uses: actions/github-script@v6
@@ -75,9 +75,9 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             });
-            
+
             const offlineRunners = runners.runners.filter(r => r.status === 'offline');
-            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

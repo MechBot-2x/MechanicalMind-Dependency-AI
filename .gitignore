@@ -1,16 +1,49 @@
+# --- Python ---
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Entornos virtuales ---
+venv/
+mechmind-env/
+env/
+.venv/
+
+# --- Tests / cobertura ---
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# --- Editores ---
+.vscode/
+.idea/
 *.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Logs / dumps ---
+*.log
 *.bak
 *.tmp
-*.egg-info/
-venv/
-*.log
 
-# Entornos virtuales y configuraciones locales adicionales
-.venv/
-.env
+# --- Datos locales del proyecto ---
+data/*.sqlite
+data/*.db
+!data/.gitkeep
 
-# Reportes generados automáticamente
-analysis_report.html
-analysis_report.json
+# --- Backups temporales ---
+*.tar.gz
+MechanicalMind-backup-*

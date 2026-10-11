@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 jobs: white
   check-version:
-    runs-on: 
+    runs-on:
       group: ubuntu-runners
       labels: ubuntu-20.04-16 core
     steps:

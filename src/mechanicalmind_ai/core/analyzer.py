@@ -1,27 +1,38 @@
-#!/usr/bin/env python3
-import click
-from mechanicalmind_ai.core import ErrorDiagnosisEngine
-import datetime
+"""
+DependencyAnalyzer - Análisis de dependencias para MechMind AI V3.
+"""
 
-@click.command()
-@click.argument('error_log')
-def diagnose(error_log):
-    """CLI para diagnóstico de errores de dependencias"""
-    try:
-        engine = ErrorDiagnosisEngine()
-        result = engine.full_diagnosis(error_log)
-        
-        click.echo("\n=== Diagnóstico MechMind AI ===")
-        click.echo(f"📌 Error: {error_log[:100]}...")
-        click.echo(f"🔍 Tipo: {result['error_type']}")
-        click.echo(f"🔄 Confianza: {result['confidence']*100:.1f}%")
-        click.echo("\n💡 Soluciones recomendadas:")
-        for i, sol in enumerate(result['solutions'], 1):
-            click.echo(f"  {i}. {sol}")
-        click.echo(f"\n⏰ Timestamp: {result['timestamp']}")
-        click.echo("="*40)
-    except Exception as e:
-        click.echo(f"❌ Error en el diagnóstico: {str(e)}", err=True)
+from __future__ import annotations
 
-if __name__ == '__main__':
-    diagnose()
+import subprocess
+from pathlib import Path
+
+
+class DependencyAnalyzer:
+    """Analiza requirements y resuelve dependencias de paquetes."""
+
+    def __init__(self, requirements_file: str | Path | None = None):
+        self.requirements_file = Path(requirements_file) if requirements_file else None
+
+    def parse_requirements_txt(self, file_path: str | Path) -> list[str]:
+        path = Path(file_path)
+        packages: list[str] = []
+        for raw in path.read_text(encoding="utf-8", errors="ignore").splitlines():
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            packages.append(line)
+        return packages
+
+    def _get_package_dependencies(self, package: str) -> str:
+        result = subprocess.run(
+            ["pip", "show", package],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        return result.stdout
+
+    def analyze(self, project_path: str | Path) -> dict:
+        path = Path(project_path)
+        return {"status": "success", "path": str(path), "exists": path.exists()}

@@ -4,8 +4,8 @@ services: mermaid:
     volumes.
     ./zdocs/architecture/diagrams:/data
     entrypoint: [“/bin/sh”, “-c”]
-    command: | 
+    command: |
     cd /data for f in .mmd; do echo
     “Procesando \(f "mmdc -i "\)f” -o
-    “$${f%.}.png”–backgroundColor 
+    “$${f%.}.png”–backgroundColor
            transparent–quiet done

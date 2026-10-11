@@ -41,7 +41,7 @@ classifiers = [
 ]
 
 # URLs importantes
-urls = { 
+urls = {
     "Homepage" = "https://github.com/mechmind-dwv/MechanicalMind-Dependency-AI",
     "Documentation" = "https://mechmind-ai.readthedocs.io",
     "Bug Tracker" = "https://github.com/mechmind-dwv/MechanicalMind-Dependency-AI/issues",

@@ -4,7 +4,7 @@
   dependency-scan:
     name: "TACTICAL_SCAN_OPERATION"
     runs-on: [self-hosted, linux, x64]  # MechMind Battle Station
-    
+
     # ⚙️ OPERATIONAL PARAMETERS
     timeout-minutes: 30  # Mission duration limit
     env:

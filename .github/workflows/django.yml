@@ -22,7 +22,7 @@ Create django.yml
 2 months ago
 
 Actualizar django.yml
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
 2 months ago
@@ -34,7 +34,7 @@ Create django.yml
 Actualizar django.yml
         python-version: '3.10'  # Versión moderna y soportada
         cache: 'pip'
-        
+
     - name: Install dependencies
 2 months ago
 
@@ -45,7 +45,7 @@ Create django.yml
 2 months ago
 
 Actualizar django.yml
-        
+
     - name: Run tests
 2 months ago
 

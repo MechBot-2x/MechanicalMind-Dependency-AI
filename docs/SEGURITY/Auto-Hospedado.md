@@ -64,20 +64,20 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.10", "3.11"]
-    
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     - name: Run Dependency Analyzer
       run: |
         python -m ai_core.dependency_analyzer --repo $GITHUB_REPOSITORY
         python -m ai_core.error_diagnosis_engine --log-path ./logs/
-    
+
     - name: Upload Results
       uses: actions/upload-artifact@v3
       with:
@@ -127,7 +127,7 @@ aws cloudwatch put-metric-alarm \
   --namespace "GitHubRunners" \
   --threshold 80 \
   --comparison-operator GreaterThanThreshold
-  
+
 ### **4. Automatización de Mantenimiento**
 **Archivo:** `.github/workflows/runner-cleanup.yml`
 
@@ -181,6 +181,6 @@ jobs:
 
 ---
 
-**✅ Firmado:**  
-**El Arquitecto DevOps** 🔧  
+**✅ Firmado:**
+**El Arquitecto DevOps** 🔧
 *"Construyendo la infraestructura del futuro, hoy."*

@@ -12,7 +12,7 @@ cleanup:
           exclude-running: true
           min-age-days: 1
           dry-run: true
-          
+
       - name: Terminar workflows obsoletos
         uses: ./.github/actions/cancel-workflows
         with:
