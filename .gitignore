@@ -47,3 +47,4 @@ data/*.db
 # --- Backups temporales ---
 *.tar.gz
 MechanicalMind-backup-*
+data
