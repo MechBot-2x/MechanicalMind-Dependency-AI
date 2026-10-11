@@ -5,7 +5,7 @@
 ![CI](https://github.com/MechBot-2x/MechanicalMind-Dependency-AI/actions/workflows/python_CI.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)
 ![License](https://img.shields.io/badge/license-Apache--2.0-green)
-![Tests](https://img.shields.io/badge/tests-33%20passed-brightgreen)
+![Tests](https://img.shields.io/badge/tests-72%20passed-brightgreen)
 
 ---
 
@@ -57,8 +57,7 @@ Requisitos: Python 3.11+ (probado en 3.11, 3.12 y 3.14).
 
 ---
 
-🛠️ Uso
-
+## 🛠️ Uso
 Escanear un proyecto
 
 ```bash
@@ -105,8 +104,7 @@ mechmind verify README.md --algorithm sha256
 
 ---
 
-🧪 Desarrollo
-
+## 🧪 Desarrollo
 ```bash
 pip install -e ".[dev]"
 bash scripts/lint.sh          # ruff + black + pytest
@@ -115,7 +113,7 @@ python -m pytest -v
 
 · Lint: ruff check src
 · Format: black src
-· Tests: pytest — 33 tests hoy
+· Tests: pytest — 72 tests hoy
 · CI: GitHub Actions en .github/workflows/python_CI.yml
 
 Estructura de src/
@@ -139,8 +137,7 @@ src/mechanicalmind_ai/
 
 ---
 
-🏗️ Arquitectura
-
+## 🏗️ Arquitectura
 ```mermaid
 graph TD
     A[CLI<br/>mechmind] --> B[scan]
@@ -156,35 +153,37 @@ graph TD
 
 ---
 
-📦 Dependencias
+## 📦 Dependencias
 
-Instalables con pip install -e .:
+Instalables con `pip install -e .`:
 
-· requests>=2.26.0
-· packaging>=21.0
-· pyyaml>=6.0
-· click>=8.0.0
-· sqlalchemy>=1.4.0
+- `requests>=2.32.4`
+- `packaging>=21.0`
+- `pyyaml>=6.0`
+- `click>=8.0.0`
+- `sqlalchemy>=1.4.0`
 
 Opcionales:
 
-· pip install -e ".[test]" → pytest, pytest-cov
-· pip install -e ".[dev]" → black, ruff, isort
-· pip install -e ".[docs]" → sphinx
-· pip install -e ".[ml]" → numpy, pandas, scikit-learn (roadmap)
+- `pip install -e ".[test]"` → pytest, pytest-cov, pytest-timeout
+- `pip install -e ".[dev]"` → black, ruff, isort
+- `pip install -e ".[docs]"` → sphinx
+- `pip install -e ".[ml]"` → numpy, pandas, scikit-learn (roadmap)
 
 ---
 
-🐛 Reportar bugs
+## 🤝 Contribuir
 
-Issues
-
----
-
-📜 Licencia
-
-Apache 2.0 — ver LICENSE.
+- [CONTRIBUTING.md](CONTRIBUTING.md) — guía de contribución.
+- [CHANGELOG.md](CHANGELOG.md) — historial de cambios.
+- [Issues](https://github.com/MechBot-2x/MechanicalMind-Dependency-AI/issues) — reportar bugs o pedir features.
 
 ---
 
-MechanicalMind AI © 2025-2026
+## 📜 Licencia
+
+Apache 2.0 — ver [LICENSE](LICENSE).
+
+---
+
+**MechanicalMind AI** © 2025-2026
