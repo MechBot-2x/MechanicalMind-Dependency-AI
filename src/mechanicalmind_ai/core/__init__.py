@@ -1,16 +1,28 @@
 """
 MechMind AI Core.
 
-Exporta la API pública de las clases de negocio y utilidades.
+Exporta la API pública de las clases de negocio, utilidades y plugins.
 """
 
+# ─── Modelos ───
 # ─── Clases de negocio ───
 from .analyzer import DependencyAnalyzer
 from .auto_fix_module import DependencyAutoFixer
 from .compatibility_matrix import CompatibilityMatrix
 from .error_diagnosis_engine import ErrorDiagnosisEngine
+from .models import Package, ScanResult
 from .monitor import ChangeSet, DependencyMonitor
-from .scanner import Package, ProjectScanner, ScanResult
+
+# ─── Sistema de plugins ───
+from .plugins import (
+    Parser,
+    ParserRegistry,
+    list_parsers,
+    register_parser,
+    registry,
+    unregister_parser,
+)
+from .scanner import ProjectScanner
 
 # ─── Utilidades ───
 from .utils.file_helpers import (
@@ -29,6 +41,9 @@ from .utils.network_helpers import (
 )
 
 __all__ = [
+    # Modelos
+    "Package",
+    "ScanResult",
     # Clases
     "DependencyAnalyzer",
     "DependencyAutoFixer",
@@ -37,8 +52,13 @@ __all__ = [
     "DependencyMonitor",
     "ChangeSet",
     "ProjectScanner",
-    "ScanResult",
-    "Package",
+    # Plugins
+    "Parser",
+    "ParserRegistry",
+    "registry",
+    "register_parser",
+    "unregister_parser",
+    "list_parsers",
     # Utilidades file
     "safe_read_file",
     "read_yaml",

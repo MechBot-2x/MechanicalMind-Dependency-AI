@@ -82,6 +82,40 @@ class TestCLI(unittest.TestCase):
         result = self.runner.invoke(cli, ["monitor", "--help"])
         self.assertIn("--once", result.output)
 
+    def test_plugins_lists(self):
+        result = self.runner.invoke(cli, ["plugins"])
+        self.assertEqual(result.exit_code, 0, msg=result.output)
+        self.assertIn("python", result.output)
+        self.assertIn("go", result.output)
+        self.assertIn("rust", result.output)
+
+    def test_plugins_detail(self):
+        result = self.runner.invoke(cli, ["plugins", "go-mod"])
+        self.assertEqual(result.exit_code, 0, msg=result.output)
+        self.assertIn("go", result.output)
+        self.assertIn("go.mod", result.output)
+
+    def test_plugins_unknown(self):
+        result = self.runner.invoke(cli, ["plugins", "no-existe"])
+        self.assertNotEqual(result.exit_code, 0)
+
+    def test_plugins_lists(self):
+        result = self.runner.invoke(cli, ["plugins"])
+        self.assertEqual(result.exit_code, 0, msg=result.output)
+        self.assertIn("python", result.output)
+        self.assertIn("go", result.output)
+        self.assertIn("rust", result.output)
+
+    def test_plugins_detail(self):
+        result = self.runner.invoke(cli, ["plugins", "go-mod"])
+        self.assertEqual(result.exit_code, 0, msg=result.output)
+        self.assertIn("go", result.output)
+        self.assertIn("go.mod", result.output)
+
+    def test_plugins_unknown(self):
+        result = self.runner.invoke(cli, ["plugins", "no-existe"])
+        self.assertNotEqual(result.exit_code, 0)
+
 
 if __name__ == "__main__":
     unittest.main()
