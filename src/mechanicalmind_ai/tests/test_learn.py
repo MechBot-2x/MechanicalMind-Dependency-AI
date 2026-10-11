@@ -1,6 +1,7 @@
 """Tests de TelemetryStore y del comando learn (V3)."""
 
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -14,6 +15,10 @@ from mechanicalmind_ai.core.learn import TelemetryStore
 class TestTelemetryStore(unittest.TestCase):
 
     def setUp(self):
+        # Aislar de la telemetría configurada por otros tests
+        self._old_path = os.environ.pop("MECHMIND_TELEMETRY_PATH", None)
+        self._old_no_tel = os.environ.pop("MECHMIND_NO_TELEMETRY", None)
+
         self.tmp = tempfile.NamedTemporaryFile(suffix=".json", delete=False)
         self.tmp.close()
         self.path = Path(self.tmp.name)
@@ -23,6 +28,10 @@ class TestTelemetryStore(unittest.TestCase):
     def tearDown(self):
         if self.path.exists():
             self.path.unlink()
+        if self._old_path is not None:
+            os.environ["MECHMIND_TELEMETRY_PATH"] = self._old_path
+        if self._old_no_tel is not None:
+            os.environ["MECHMIND_NO_TELEMETRY"] = self._old_no_tel
 
     def test_empty_stats(self):
         data = self.store.get_stats()
