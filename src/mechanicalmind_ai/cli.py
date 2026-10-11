@@ -213,9 +213,35 @@ def learn() -> None:
 
 
 @cli.command()
-def plugins() -> None:
-    """(Roadmap) Gestión de plugins multi-ecosystem. Aún no implementado."""
-    click.echo("🚧 `plugins` está en roadmap. Disponible en una futura versión.")
+@click.argument("name", required=False)
+def plugins(name: str | None) -> None:
+    """Lista los parsers registrados o muestra detalles de uno.
+
+    Sin argumentos: lista todos los parsers con su ecosistema.
+    Con NAME: muestra detalles del parser NAME.
+    """
+    from mechanicalmind_ai.core import list_parsers, registry
+
+    if name:
+        parser = registry.get(name)
+        if parser is None:
+            click.echo(f"❌ Parser no encontrado: {name}", err=True)
+            sys.exit(1)
+        click.echo(f"\n📦 {parser.name}")
+        click.echo(f"   Ecosistema  : {parser.ecosystem}")
+        click.echo(f"   Descripción : {parser.description}")
+        click.echo(f"   Patrones    : {', '.join(parser.filename_patterns)}")
+        return
+
+    parsers = list_parsers()
+    ecos = sorted({p.ecosystem for p in parsers})
+
+    click.echo(f"\n🔌 Parsers registrados: {len(parsers)}")
+    click.echo(f"🧩 Ecosistemas: {', '.join(ecos)}\n")
+
+    for p in parsers:
+        patterns = ", ".join(p.filename_patterns)
+        click.echo(f"   [{p.ecosystem:8}] {p.name:24} {patterns}")
 
 
 if __name__ == "__main__":

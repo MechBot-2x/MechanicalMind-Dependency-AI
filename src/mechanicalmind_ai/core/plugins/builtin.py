@@ -1,4 +1,5 @@
 """Parsers built-in para los ecosistemas soportados por MechMind AI."""
+
 from __future__ import annotations
 
 import json
@@ -9,7 +10,6 @@ from pathlib import Path
 
 from ..models import Package
 from .registry import Parser
-
 
 # ═════════════════════════════ helpers ═════════════════════════════════
 
@@ -29,7 +29,7 @@ def _strip_comment(line: str) -> str:
 
 
 def _strip_slash_comment(line: str) -> str:
-    """Elimina comentarios // (para go.mod, Cargo.toml no aplica)."""
+    """Elimina comentarios // (para go.mod)."""
     idx = line.find("//")
     return line[:idx] if idx >= 0 else line
 
@@ -105,9 +105,7 @@ def _parse_pom(path: Path) -> list[Package]:
         a = dep.findtext("m:artifactId", default="", namespaces=ns)
         v = dep.findtext("m:version", default="", namespaces=ns)
         if a:
-            pkgs.append(
-                Package(name=f"{g}:{a}", version=v, ecosystem="java", source=str(path))
-            )
+            pkgs.append(Package(name=f"{g}:{a}", version=v, ecosystem="java", source=str(path)))
     return pkgs
 
 
@@ -193,9 +191,7 @@ def _parse_cargo_toml(path: Path) -> list[Package]:
 # ══════════════════════════════ Ruby ═══════════════════════════════════
 
 
-_GEM_RE = re.compile(
-    r"""^\s*gem\s+['"]([^'"]+)['"](?:\s*,\s*['"]([^'"]+)['"])?""",
-)
+_GEM_RE = re.compile(r"""^\s*gem\s+['"]([^'"]+)['"](?:\s*,\s*['"]([^'"]+)['"])?""")
 
 
 def _parse_gemfile(path: Path) -> list[Package]:
@@ -235,8 +231,10 @@ def _parse_composer_json(path: Path) -> list[Package]:
 # ══════════════════════════════ Swift ══════════════════════════════════
 
 
+# Captura: .package(url: "...github.com/OWNER/REPO(.git)?", from: "VERSION")
 _SWIFT_PKG_RE = re.compile(
-    r"""\.package\s*\(\s*(?:name:\s*"[^"]+"\s*,\s*)?url:\s*"[^"]*?/([^/"]+?)(?:\.git)?"\s*,\s*(?:from|exact|upToNextMajor|upToNextMinor)?:?\s*"([^"]+)""""
+    r"\.package\s*\([^)]*?url:\s*\"[^\"]*?/([^/\"]+?)(?:\.git)?\""
+    r"[^)]*?(?:from|exact|upToNextMajor|upToNextMinor)?\s*:?\s*\"([^\"]+)\""
 )
 
 
