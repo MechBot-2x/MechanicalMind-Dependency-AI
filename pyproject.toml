@@ -33,7 +33,7 @@ classifiers = [
 
 # ─────────────────────────── Dependencias obligatorias ─────────────────────
 dependencies = [
-    "requests>=2.26.0",
+    "requests>=2.32.4",
     "packaging>=21.0",
     "pyyaml>=6.0",
     "click>=8.0.0",
