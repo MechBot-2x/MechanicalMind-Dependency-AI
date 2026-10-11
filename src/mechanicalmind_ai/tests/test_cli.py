@@ -1,6 +1,13 @@
 import os
+import tempfile
 
-os.environ["MECHMIND_NO_TELEMETRY"] = "1"  # no escribir en $HOME durante tests
+# Redirige la telemetría a un archivo temporal para no escribir en $HOME,
+# pero sin desactivarla (así test_learn puede verificar escrituras).
+os.environ.setdefault(
+    "MECHMIND_TELEMETRY_PATH",
+    os.path.join(tempfile.gettempdir(), "mechmind_test_stats.json"),
+)
+os.environ.pop("MECHMIND_NO_TELEMETRY", None)
 
 """Tests del CLI (V3)."""
 
