@@ -98,11 +98,31 @@ class TestLearnCLI(unittest.TestCase):
 
     def setUp(self):
         self.runner = CliRunner()
+        self._old_tel = os.environ.get("MECHMIND_TELEMETRY_PATH")
+        self._old_no = os.environ.get("MECHMIND_NO_TELEMETRY")
+
+        # Aislar en un directorio temporal propio
+        self.tmp_dir = tempfile.mkdtemp()
+        self.tel_path = Path(self.tmp_dir) / "stats.json"
+        os.environ["MECHMIND_TELEMETRY_PATH"] = str(self.tel_path)
+        os.environ.pop("MECHMIND_NO_TELEMETRY", None)
+
+    def tearDown(self):
+        import shutil
+
+        shutil.rmtree(self.tmp_dir, ignore_errors=True)
+        if self._old_tel is None:
+            os.environ.pop("MECHMIND_TELEMETRY_PATH", None)
+        else:
+            os.environ["MECHMIND_TELEMETRY_PATH"] = self._old_tel
+        if self._old_no is not None:
+            os.environ["MECHMIND_NO_TELEMETRY"] = self._old_no
 
     def test_learn_path(self):
         result = self.runner.invoke(cli, ["learn", "path"])
         self.assertEqual(result.exit_code, 0)
-        self.assertIn(".mechmind", result.output)
+        # Debe reportar la ruta que hemos forzado
+        self.assertEqual(result.output.strip(), str(self.tel_path))
 
     def test_learn_reset_requires_yes(self):
         result = self.runner.invoke(cli, ["learn", "reset"])
@@ -110,12 +130,11 @@ class TestLearnCLI(unittest.TestCase):
         self.assertIn("--yes", result.output)
 
     def test_learn_export_json_to_file(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            out = Path(tmp) / "stats.json"
-            result = self.runner.invoke(cli, ["learn", "export", "-f", "json", "-o", str(out)])
-            self.assertEqual(result.exit_code, 0, msg=result.output)
-            self.assertTrue(out.exists())
-            self.assertIn("version", out.read_text())
+        out = Path(self.tmp_dir) / "export.json"
+        result = self.runner.invoke(cli, ["learn", "export", "-f", "json", "-o", str(out)])
+        self.assertEqual(result.exit_code, 0, msg=result.output)
+        self.assertTrue(out.exists())
+        self.assertIn("version", out.read_text())
 
 
 if __name__ == "__main__":
